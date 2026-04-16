@@ -6,7 +6,7 @@ export function HeroCopy() {
 				<span className="text-gradient-gold">sincronizar</span> sua vida ao sol.
 			</h1>
 
-			<p className="max-w-xl text-base text-foreground/70 md:text-lg">
+			<p className="max-w-xl text-base text-secondary md:text-lg">
 				Placa solar em formato de lótus que se inclina automaticamente em direção ao sol, maximizando a captação
 				de energia com design inspirado na natureza.
 			</p>

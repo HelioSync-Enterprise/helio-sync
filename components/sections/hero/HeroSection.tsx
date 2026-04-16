@@ -6,7 +6,7 @@ import { HeroImagePanel } from './HeroImagePanel';
 
 export function HeroSection() {
 	return (
-		<section className="mx-auto flex min-h-[82vh] w-full max-w-[78%] items-center justify-between gap-12 overflow-hidden xl:gap-20">
+		<section className="mx-auto flex min-h-screen w-full max-w-[78%] items-center justify-between gap-12 overflow-hidden xl:gap-20 px-6 py-14 md:px-12">
 			<HeroGlow className="-top-24 -left-20 h-80 w-80" color="#2E8B57" opacityClass="opacity-[0.24]" />
 
 			<HeroGlow className="top-20 right-1/4 h-125 w-125" color="#32CD32" opacityClass="opacity-20" />

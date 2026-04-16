@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-body{
+body {
 	box-sizing: border-box;
 }
 
@@ -37,6 +37,10 @@ body{
 	/* Tokens base da aplicação */
 	--background: var(--helio-bg-primary);
 	--foreground: #f3ffe9;
+
+	/* textos */
+	--text-primary: var(--foreground);
+	--text-secondary: color-mix(in srgb, var(--text-primary) 70%, transparent);
 }
 
 @theme inline {
@@ -59,6 +63,10 @@ body{
 
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
+
+	/* Aliases para usar text-primary e text-secondary */
+	--color-primary: var(--text-primary);
+	--color-secondary: var(--text-secondary);
 
 	/* Background images */
 	--background-image-helio-gradient-gold: var(--helio-gradient-gold);
