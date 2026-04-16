@@ -73,7 +73,7 @@ export default function Features() {
 				Por que escolher Helio<span className="text-gradient-gold">Sync</span>?
 			</h1>
 			<p
-				className={`mx-auto mb-8 max-w-2xl text-center text-lg text-secondary reveal-up ${isVisible ? 'is-visible' : ''}`}
+				className={`text-body-lg mx-auto mb-8 max-w-2xl text-center text-secondary reveal-up ${isVisible ? 'is-visible' : ''}`}
 				style={subtitleRevealStyle}
 			>
 				Apresentamos uma forma viável e eficaz de gerar energia diretamente da sua residência.
@@ -114,7 +114,7 @@ function FeatureCard({
 
 	return (
 		<div
-			className={`flex min-h-70 max-w-80 flex-col gap-4 rounded-2xl border border-foreground/10 bg-white/2 p-6 backdrop-blur-sm transition-colors duration-200 hover:bg-white/5 reveal-up ${
+			className={`flex min-h-70 max-w-82 flex-col gap-4 rounded-2xl border border-foreground/10 bg-white/2 p-6 backdrop-blur-sm transition-colors duration-200 hover:bg-white/5 reveal-up ${
 				isVisible ? 'is-visible' : ''
 			}`}
 			style={cardRevealStyle}
@@ -129,7 +129,7 @@ function FeatureCard({
 				<Icon className="size-6" style={{ color: `var(${color})` }} />
 			</div>
 			<h3 className="text-xl font-bold">{title}</h3>
-			<p className="text-muted">{description}</p>
+			<p className="text-base leading-relaxed text-muted">{description}</p>
 		</div>
 	);
 }

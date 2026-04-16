@@ -1,6 +1,7 @@
 import { HeroSection } from '@/components/sections/hero/HeroSection';
 import Header from '../components/ui/Header/Header';
 import Features from '@/components/sections/features/Features';
+import MathModel from '@/components/sections/math-model/MathModel';
 
 export default function Home() {
 	return (
@@ -8,6 +9,7 @@ export default function Home() {
 			<Header />
 			<HeroSection />
 			<Features/>
+			<MathModel />
 		</main>
 	);
 }

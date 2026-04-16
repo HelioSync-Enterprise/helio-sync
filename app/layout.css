@@ -70,6 +70,31 @@ body {
 	--color-secondary: var(--text-secondary);
 	--color-muted: var(--text-muted);
 
+	/* Typography tokens (Tailwind v4) */
+	--text-display: clamp(2.2rem, 4vw, 4rem);
+	--text-display--line-height: 1.05;
+
+	--text-title: clamp(1.8rem, 3vw, 2.75rem);
+	--text-title--line-height: 1.15;
+
+	--text-subtitle: clamp(1.2rem, 1.8vw, 1.5rem);
+	--text-subtitle--line-height: 1.3;
+
+	--text-body-lg: 1.125rem;
+	--text-body-lg--line-height: 1.7;
+
+	--text-body: 1rem;
+	--text-body--line-height: 1.7;
+
+	--text-caption: 0.875rem;
+	--text-caption--line-height: 1.45;
+
+	--text-nav: 1rem;
+	--text-nav--line-height: 1.3;
+
+	--text-brand: 1.55rem;
+	--text-brand--line-height: 1.1;
+
 	/* Background images */
 	--background-image-helio-gradient-gold: var(--helio-gradient-gold);
 	--background-image-helio-gradient-green: var(--helio-gradient-green);
