@@ -9,7 +9,7 @@ type HeaderNavMenuProps = {
 
 export function HeaderNavMenu({ items }: HeaderNavMenuProps) {
 	return (
-		<ul className="flex items-center gap-8 px-6 py-4 text-nav font-medium text-secondary">
+		<ul className="flex items-center gap-8 px-6 py-4 text-nav text-secondary">
 			{items.map(i => (
 				<li key={i.label}>
 					<a href={i.href}>{i.label}</a>
