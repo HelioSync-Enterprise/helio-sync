@@ -103,7 +103,7 @@ export default function MathModel() {
 				shape="oval"
 			/>
 
-			<div className="relative z-10 mx-auto flex w-full max-w-340 flex-col items-center px-4 md:px-8">
+			<div className="relative z-10 mx-auto flex w-full flex-col items-center px-5 sm:px-6 md:px-10 lg:px-12 min-[1920px]:max-w-[78%]">
 				<h1 className="text-title mb-6">
 					O <span className="text-gradient-gold">Modelo Matemático</span>
 				</h1>
@@ -112,7 +112,7 @@ export default function MathModel() {
 					do sol a qualquer momento.
 				</p>
 
-				<div className="grid w-full mt-8 gap-8 xl:grid-cols-[1.05fr_1fr]">
+				<div className="mt-8 grid w-full gap-8 xl:grid-cols-[1.05fr_1fr]">
 					<div className="space-y-6">
 						{equationCards.map(card => {
 							const accent = accentClasses[card.accent];
@@ -124,7 +124,7 @@ export default function MathModel() {
 							return (
 								<article
 									key={card.symbol}
-									className={`group rounded-3xl border ${accent.cardGradient} ${accent.cardBorder} p-8 shadow-[0_20px_45px_-32px_rgba(0,0,0,0.8)] transition-colors duration-300`}
+									className={`group rounded-3xl border ${accent.cardGradient} ${accent.cardBorder} p-6 shadow-[0_20px_45px_-32px_rgba(0,0,0,0.8)] transition-colors duration-300 sm:p-8`}
 								>
 									<div className="mb-7 flex items-start gap-4">
 										<IconBadge
@@ -144,11 +144,13 @@ export default function MathModel() {
 										</div>
 									</div>
 
-									<div className={`rounded-2xl border px-8 py-7 ${accent.formulaSurface}`}>
+									<div
+										className={`rounded-2xl border px-4 py-5 sm:px-8 sm:py-7 ${accent.formulaSurface}`}
+									>
 										{card.formula.map(line => (
 											<p
 												key={line}
-												className={`text-center font-mono text-[1.1rem] leading-[1.55] ${accent.formulaColor}`}
+												className={`text-center font-mono text-base leading-[1.55] sm:text-[1.1rem] ${accent.formulaColor}`}
 											>
 												{line}
 											</p>
@@ -163,7 +165,7 @@ export default function MathModel() {
 						})}
 					</div>
 
-					<aside className="rounded-3xl border border-[rgb(255_255_255/0.15)] bg-[linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-8 backdrop-blur-sm">
+					<aside className="rounded-3xl border border-[rgb(255_255_255/0.15)] bg-[linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-6 backdrop-blur-sm sm:p-8">
 						<h2 className="flex items-center gap-3 text-lead font-bold text-primary">
 							<span className="text-muted">(x)</span>
 							Variáveis do Modelo

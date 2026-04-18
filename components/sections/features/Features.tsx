@@ -70,27 +70,30 @@ export default function Features() {
 					background: 'radial-gradient(ellipse at center top, var(--helio-bg-accent) 0%, transparent 60%)',
 				}}
 			/>
-			<h1 className={`mb-6 text-title reveal-up ${isVisible ? 'is-visible' : ''}`}>
-				Por que escolher Helio<span className="text-gradient-gold">Sync</span>?
-			</h1>
-			<p
-				className={`mx-auto mb-8 max-w-2xl text-center text-lead text-secondary reveal-up ${isVisible ? 'is-visible' : ''}`}
-				style={subtitleRevealStyle}
-			>
-				Apresentamos uma forma viável e eficaz de gerar energia diretamente da sua residência.
-			</p>
-			<div className="flex flex-wrap items-center justify-center gap-6">
-				{features.map((feature, index) => (
-					<FeatureCard
-						key={index}
-						Icon={feature.icon}
-						title={feature.title}
-						description={feature.desc}
-						color={feature.color}
-						isVisible={isVisible}
-						delay={220 + index * 90}
-					/>
-				))}
+
+			<div className="relative z-10 mx-auto w-full px-5 sm:px-6 md:px-10 lg:px-12 min-[1920px]:max-w-[78%]">
+				<h1 className={`mb-6 text-title reveal-up ${isVisible ? 'is-visible' : ''}`}>
+					Por que escolher Helio<span className="text-gradient-gold">Sync</span>?
+				</h1>
+				<p
+					className={`mx-auto mb-8 max-w-2xl text-center text-lead text-secondary reveal-up ${isVisible ? 'is-visible' : ''}`}
+					style={subtitleRevealStyle}
+				>
+					Apresentamos uma forma viável e eficaz de gerar energia diretamente da sua residência.
+				</p>
+				<div className="flex flex-wrap items-stretch justify-center gap-6">
+					{features.map((feature, index) => (
+						<FeatureCard
+							key={index}
+							Icon={feature.icon}
+							title={feature.title}
+							description={feature.desc}
+							color={feature.color}
+							isVisible={isVisible}
+							delay={220 + index * 90}
+						/>
+					))}
+				</div>
 			</div>
 		</section>
 	);
@@ -115,7 +118,7 @@ function FeatureCard({
 
 	return (
 		<div
-			className={`flex min-h-70 max-w-80 flex-col gap-4 rounded-2xl border border-foreground/10 bg-white/2 p-6 backdrop-blur-sm transition-colors duration-200 hover:bg-white/5 reveal-up ${
+			className={`flex min-h-70 w-full max-w-80 flex-col gap-4 rounded-2xl border border-foreground/10 bg-white/2 p-6 backdrop-blur-sm transition-colors duration-200 hover:bg-white/5 sm:max-w-88 reveal-up ${
 				isVisible ? 'is-visible' : ''
 			}`}
 			style={cardRevealStyle}
