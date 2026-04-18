@@ -63,7 +63,7 @@ export default function Simulator() {
 			className="relative bg-helio-bg-secondary py-16 flex items-center justify-center flex-col"
 		>
 			<h1 className={`mb-6 text-title reveal-up ${isVisible ? 'is-visible' : ''}`}>
-				Simulador <span className="text-gradient-green">Interativo</span>?
+				Simulador <span className="text-gradient-green">Interativo</span>
 			</h1>
 			<p
 				className={`mx-auto mb-8 max-w-2xl text-center text-lead text-secondary reveal-up ${isVisible ? 'is-visible' : ''}`}
