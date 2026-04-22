@@ -63,11 +63,12 @@ export default function Features() {
 	const subtitleRevealStyle = { '--reveal-delay': '120ms' } as CSSProperties;
 
 	return (
-		<section ref={sectionRef} className="relative bg-helio-bg-secondary py-16">
+		<section ref={sectionRef} className="relative overflow-hidden bg-helio-bg-secondary py-16">
 			<div
-				className="absolute inset-0 opacity-30"
+				className="pointer-events-none absolute left-1/2 top-0 w-220 aspect-10/3 -translate-x-1/2 opacity-90"
 				style={{
-					background: 'radial-gradient(ellipse at center top, var(--helio-bg-accent) 0%, transparent 60%)',
+					background:
+						'radial-gradient(ellipse at center, rgb(13 40 24 / 0.72) 0%, rgb(13 40 24 / 0.34) 34%, rgb(13 40 24 / 0.1) 54%, transparent 78%)',
 				}}
 			/>
 

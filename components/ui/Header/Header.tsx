@@ -62,8 +62,8 @@ export default function Header() {
 	return (
 		<>
 			<header
-				className={`fixed top-4 left-4 right-4 z-50 rounded-3xl border border-white/10 backdrop-blur-sm transition-colors duration-300 sm:left-6 sm:right-6 md:left-10 md:right-10 lg:left-14 lg:right-14 lg:border-0 xl:left-24 xl:right-24 ${
-					isScrolled ? 'bg-(--helio-bg-primary)/95' : 'bg-helio-hero/80'
+				className={`fixed top-4 left-4 right-4 z-50 rounded-3xl border border-white/10 backdrop-blur-md transition-colors duration-300 sm:left-6 sm:right-6 md:left-10 md:right-10 lg:left-14 lg:right-14 lg:border-0 xl:left-24 xl:right-24 ${
+					isScrolled ? 'bg-(--helio-bg-primary)/80' : 'bg-helio-hero/80'
 				}`}
 			>
 				<nav className="flex items-center justify-between gap-3 px-3 py-3 sm:px-4">

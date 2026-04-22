@@ -6,7 +6,10 @@ import { HeroImagePanel } from './HeroImagePanel';
 
 export function HeroSection() {
 	return (
-		<section className="mx-auto flex bg-helio-hero min-h-screen w-full flex-col items-center justify-center gap-10 overflow-hidden px-5 py-24 sm:px-6 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-12 lg:py-14 min-[1920px]:max-w-[78%] min-[1920px]:gap-20">
+		<section className="mx-auto flex bg-helio-hero min-h-screen w-full flex-col items-center justify-center gap-10 overflow-hidden px-5 py-24 sm:px-6 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-12 lg:py-14 min-[1920px]:max-w-[78%] min-[1920px]:gap-20"
+					style={{ background: 'linear-gradient(0deg, var(--helio-bg-primary) 0%, transparent 10%)' }}
+
+		>
 			<div className="hero-glow-enter">
 				<HeroGlow
 					className="-top-20 -left-16 h-56 w-56 md:-top-24 md:-left-20 md:h-80 md:w-80"

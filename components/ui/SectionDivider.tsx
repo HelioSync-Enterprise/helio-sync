@@ -17,7 +17,7 @@ export function SectionDivider() {
 	return (
 		<div
 			aria-hidden="true"
-			className="relative h-20 w-full overflow-hidden bg-[linear-gradient(180deg,#051a0d_0%,#042113_58%,#022013_100%)]"
+			className="relative h-20 w-full overflow-hidden bg-[linear-gradient(180deg,var(--helio-bg-primary),var(--helio-bg-secondary))]"
 		>
 			<div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_84px,rgba(50,205,50,0.04)_85px,transparent_86px)]" />
 			<div className="absolute inset-x-0 top-[58%] h-px bg-linear-to-r from-transparent via-[#f6d75d]/90 to-transparent" />
