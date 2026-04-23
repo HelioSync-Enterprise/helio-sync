@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 	category: 'technology',
 	authors: [
 		{ name: 'Renan Rodrigues de Meneses', url: 'https://renanrod.vercel.app' },
-		{ name: 'Igor Martins Leocádio', url: '' },
+		{ name: 'Igor Martins Leocádio', url: 'https://www.linkedin.com/in/igor-leoc%C3%A1dio-a68107329/' },
 		{ name: 'Gabriel Chagas Madureira', url: 'https://www.linkedin.com/in/gabriel-chagas-300b66352/' },
 		{ name: 'Pedro Henrique Resende Gomes', url: 'https://github.com/percels' },
 		{ name: 'Nícolas de Camargo Pedroso', url: '' },
