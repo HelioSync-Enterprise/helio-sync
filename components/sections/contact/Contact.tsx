@@ -61,7 +61,8 @@ export default function Contact() {
 
 	return (
 		<section
-			className="relative overflow-hidden bg-helio-bg-secondary px-5 py-16 sm:px-6 md:px-10 lg:px-12"
+			id="contato"
+			className="relative scroll-mt-28 overflow-hidden bg-helio-bg-secondary px-5 py-16 sm:px-6 md:px-10 lg:px-12"
 			style={{
 				background:
 					'radial-gradient(circle at 50% 46%, rgb(50 205 50 / 0.13) 0%, transparent 38%), linear-gradient(180deg, var(--helio-bg-primary), var(--helio-bg-secondary))',

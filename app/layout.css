@@ -4,6 +4,10 @@ body {
 	box-sizing: border-box;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 :root {
 	/* HelioSync - cores principais */
 	--helio-green: #32cd32;

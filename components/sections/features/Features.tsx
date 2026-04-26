@@ -63,7 +63,7 @@ export default function Features() {
 	const subtitleRevealStyle = { '--reveal-delay': '120ms' } as CSSProperties;
 
 	return (
-		<section ref={sectionRef} className="relative overflow-hidden bg-helio-bg-secondary py-16">
+		<section id="funcionalidades" ref={sectionRef} className="relative scroll-mt-28 overflow-hidden bg-helio-bg-secondary py-16">
 			<div
 				className="pointer-events-none absolute left-1/2 top-0 w-220 aspect-10/3 -translate-x-1/2 opacity-90"
 				style={{

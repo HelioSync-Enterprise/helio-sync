@@ -18,7 +18,8 @@ const steps = [
 export default function HowItWorks() {
 	return (
 		<section
-			className="py-16 px-4 flex text-center justify-center items-center gap-20"
+            id="sobre"
+            className="flex scroll-mt-28 items-center justify-center gap-20 px-4 py-16 text-center"
 			style={{
 				background: 'linear-gradient(180deg, var(--helio-bg-secondary) , var(--helio-bg-primary) 300px)',
 			}}
