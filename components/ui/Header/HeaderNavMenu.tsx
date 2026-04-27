@@ -13,6 +13,7 @@ export function HeaderNavMenu({ items, className, itemClassName, linkClassName, 
 		'relative inline-flex py-1 text-secondary transition-colors duration-300 hover:text-primary after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-helio-green after:transition-transform after:duration-300 hover:after:scale-x-100';
 
 	const handleAnchorClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+		// Essa função faz a rolagem suave para seções internas da página. Se o link for externo (não começar com '#'), ela apenas chama onItemClick e retorna.
 		if (!href.startsWith('#')) {
 			onItemClick?.();
 			return;
