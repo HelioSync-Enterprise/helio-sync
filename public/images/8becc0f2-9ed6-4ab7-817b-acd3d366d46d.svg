@@ -1,0 +1,92 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo -->
+  <rect width="512" height="512" fill="transparent"></rect>
+
+  <defs>
+    <path id="petal" d="M0,-180 C40,-140 40,-60 0,-20 C-40,-60 -40,-140 0,-180 Z"></path>
+    <path id="vein" d="
+      M0,-100
+      Q3,-90 2,-60
+      Q1,-35 0,-22
+      Q-1,-35 -2,-60
+      Q-3,-90 0,-100
+      Z"></path>
+    <radialGradient id="center-grad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fff3a0"></stop>
+      <stop offset="55%" stop-color="#f4d03f"></stop>
+      <stop offset="100%" stop-color="#e4b92d"></stop>
+    </radialGradient>
+  </defs>
+
+  <g transform="translate(256,256)">
+    
+    <!-- Pétalas externas -->
+    <g fill="#8e44ad">
+      <use href="#petal" transform="rotate(0)"></use>
+      <use href="#petal" transform="rotate(30)"></use>
+      <use href="#petal" transform="rotate(60)"></use>
+      <use href="#petal" transform="rotate(90)"></use>
+      <use href="#petal" transform="rotate(120)"></use>
+      <use href="#petal" transform="rotate(150)"></use>
+      <use href="#petal" transform="rotate(180)"></use>
+      <use href="#petal" transform="rotate(210)"></use>
+      <use href="#petal" transform="rotate(240)"></use>
+      <use href="#petal" transform="rotate(270)"></use>
+      <use href="#petal" transform="rotate(300)"></use>
+      <use href="#petal" transform="rotate(330)"></use>
+    </g>
+
+    <!-- Pétalas internas -->
+    <g fill="#a569bd">
+      <use href="#petal" transform="rotate(15)"></use>
+      <use href="#petal" transform="rotate(45)"></use>
+      <use href="#petal" transform="rotate(75)"></use>
+      <use href="#petal" transform="rotate(105)"></use>
+      <use href="#petal" transform="rotate(135)"></use>
+      <use href="#petal" transform="rotate(165)"></use>
+      <use href="#petal" transform="rotate(195)"></use>
+      <use href="#petal" transform="rotate(225)"></use>
+      <use href="#petal" transform="rotate(255)"></use>
+      <use href="#petal" transform="rotate(285)"></use>
+      <use href="#petal" transform="rotate(315)"></use>
+      <use href="#petal" transform="rotate(345)"></use>
+    </g>
+
+    <!-- Camada menor -->
+    <g fill="#cba1dc">
+      <use href="#petal" transform="rotate(15) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(45) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(75) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(105) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(135) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(165) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(195) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(225) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(255) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(285) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(315) scale(0.7)"></use>
+      <use href="#petal" transform="rotate(345) scale(0.7)"></use>
+    </g>
+
+    <!-- Triângulos -->
+    <g fill="#7d3c98" opacity="0.55">
+      <use href="#vein" transform="rotate(15)"></use>
+      <use href="#vein" transform="rotate(45)"></use>
+      <use href="#vein" transform="rotate(75)"></use>
+      <use href="#vein" transform="rotate(105)"></use>
+      <use href="#vein" transform="rotate(135)"></use>
+      <use href="#vein" transform="rotate(165)"></use>
+      <use href="#vein" transform="rotate(195)"></use>
+      <use href="#vein" transform="rotate(225)"></use>
+      <use href="#vein" transform="rotate(255)"></use>
+      <use href="#vein" transform="rotate(285)"></use>
+      <use href="#vein" transform="rotate(315)"></use>
+      <use href="#vein" transform="rotate(345)"></use>
+    </g>
+
+    <!-- Centro com gradiente -->
+    <circle cx="0" cy="0" r="60" fill="url(#center-grad)"></circle>
+    <circle cx="-12" cy="-16" r="14" fill="#fff7b3" opacity="0.7"></circle>
+
+  </g>
+</svg>

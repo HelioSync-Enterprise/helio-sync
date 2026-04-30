@@ -10,6 +10,7 @@ export function HeroGlow({
 	color,
 	opacityClass = 'opacity-20',
 	shape = 'circle',
+	
 }: HeroGlowProps) {
 	const gradientShape = shape === 'oval' ? 'ellipse' : 'circle';
 

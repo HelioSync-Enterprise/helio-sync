@@ -17,6 +17,8 @@ html {
 
 	--helio-gold: #ffd700;
 	--helio-amber: #f4a460;
+	--helio-rose: #f4a1c8;
+	--helio-rose-soft: #ffd1e6;
 
 	/* HelioSync - backgrounds escuros */
 	--helio-bg-primary: #0a1a0a;
@@ -57,6 +59,8 @@ html {
 
 	--color-helio-gold: var(--helio-gold);
 	--color-helio-amber: var(--helio-amber);
+	--color-helio-rose: var(--helio-rose);
+	--color-helio-rose-soft: var(--helio-rose-soft);
 
 	--color-helio-bg-primary: var(--helio-bg-primary);
 	--color-helio-bg-secondary: var(--helio-bg-secondary);
