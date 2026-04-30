@@ -1,0 +1,96 @@
+import type { ChangeEvent } from 'react';
+
+import { Button } from '@/components/ui/Button';
+
+type LoginFormProps = {
+	email: string;
+	password: string;
+	progress: number;
+	progressLabel: string;
+	onEmailChange: (value: string) => void;
+	onPasswordChange: (value: string) => void;
+};
+
+export function LoginForm({
+	email,
+	password,
+	progress,
+	progressLabel,
+	onEmailChange,
+	onPasswordChange,
+}: LoginFormProps) {
+	const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
+		onEmailChange(event.target.value);
+	};
+
+	const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+		onPasswordChange(event.target.value);
+	};
+
+	return (
+		<section className="flex flex-col justify-center">
+			<h1 className="mt-4 text-heading text-primary">
+				Bem-vindo de volta ao <span className="text-gradient-green-light">HelioSync</span>
+			</h1>
+			<p className="mt-4 max-w-xl text-lead text-muted">
+				Acompanhe sua energia solar em tempo real. Use seus dados para crescer com o sol.
+			</p>
+
+			<form className="mt-8 flex flex-col gap-6">
+				<div className="space-y-2">
+					<label htmlFor="login-email" className="text-caption font-semibold text-secondary">
+						Email
+					</label>
+					<input
+						id="login-email"
+						type="email"
+						placeholder="você@heliosync.com"
+						value={email}
+						onChange={handleEmailChange}
+						className="h-13 w-full rounded-2xl border border-foreground/12 bg-white/3 px-5 text-body text-foreground placeholder:text-muted/90 transition-all duration-300 focus:border-helio-green-light/60 focus:outline-none focus:ring-2 focus:ring-helio-green-light/20"
+						required
+					/>
+				</div>
+
+				<div className="space-y-3">
+					<label htmlFor="login-password" className="text-caption font-semibold text-secondary">
+						Senha
+					</label>
+					<input
+						id="login-password"
+						type="password"
+						placeholder="Digite sua senha"
+						value={password}
+						onChange={handlePasswordChange}
+						className="h-13 w-full rounded-2xl border border-foreground/12 bg-white/3 px-5 text-body text-foreground placeholder:text-muted/90 transition-all duration-300 focus:border-helio-gold/60 focus:outline-none focus:ring-2 focus:ring-helio-gold/20"
+						required
+					/>
+
+					<div className="space-y-2">
+						<div className="flex items-center justify-end text-caption text-muted">
+							<span aria-live="polite">{progressLabel}</span>
+						</div>
+						<div className="h-1.5 w-full overflow-hidden rounded-full bg-white/5">
+							<div
+								className="h-full rounded-full bg-linear-to-r from-helio-green to-helio-gold transition-[width] duration-300"
+								style={{ width: `${progress * 100}%` }}
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+					<Button variant="sendMessage" className="sm:w-auto" type="submit">
+						Entrar
+					</Button>
+					<button
+						type="button"
+						className="text-caption font-semibold text-helio-green-light cursor-pointer transition-colors hover:text-primary "
+					>
+						Esqueci minha senha
+					</button>
+				</div>
+			</form>
+		</section>
+	);
+}

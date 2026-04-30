@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { degToRad, calculateSolarAngles } from '../utils/solar-calculations';
+import { degToRad, calculateSolarAngles } from './utils/solar-calculations';
 
 interface SolarTrackerProps {
 	latitude: number;

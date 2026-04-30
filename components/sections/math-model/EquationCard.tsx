@@ -1,5 +1,5 @@
 import { IconBadge } from '@/components/ui/IconBadge';
-import { accentClasses, EquationCardData } from '../math-model.constants';
+import { accentClasses, EquationCardData } from './math-model.constants';
 
 export function EquationCard({ card }: { card: EquationCardData }) {
 	const accent = accentClasses[card.accent];

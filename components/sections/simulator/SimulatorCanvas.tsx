@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { FiPlay, FiPause, FiFastForward, FiRewind } from 'react-icons/fi';
-import { SolarTracker } from './components/SolarTracker';
+import { SolarTracker } from './SolarTracker';
 
 export default function SimulatorContainer() {
 	const [latitude, setLatitude] = useState(-23.55); // Aproximadamente a Latitude de São Paulo

@@ -1,6 +1,6 @@
 import { HeroGlow } from '@/components/ui/HeroGlow';
-import { EquationCard } from './components/EquationCard';
-import { VariableCard } from './components/VariableCard';
+import { EquationCard } from './EquationCard';
+import { VariableCard } from './VariableCard';
 import { equationCards, variables } from './math-model.constants';
 
 export default function MathModel() {
