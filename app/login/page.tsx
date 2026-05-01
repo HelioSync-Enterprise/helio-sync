@@ -24,10 +24,11 @@ export default function LoginPage() {
 	const isComplete = progress >= 1;
 
 	return (
-		<main className="relative flex items-center justify-center min-h-screen overflow-hidden bg-helio-bg-primary">
+		<main className="relative flex items-center justify-center min-h-dvh overflow-hidden bg-helio-bg-primary">
 			<LoginHeroGlows />
 			<LoginCard>
 				<LoginForm
+
 					email={email}
 					password={password}
 					progress={progress}

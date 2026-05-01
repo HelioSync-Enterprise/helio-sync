@@ -28,15 +28,15 @@ export function LoginForm({
 	};
 
 	return (
-		<section className="flex flex-col justify-center">
-			<h1 className="mt-4 text-heading text-primary">
+		<section className="flex flex-col text-center sm:text-start sm:justify-center order-2 sm:order-1">
+			<h1 className="mt-2 text-heading text-primary sm:mt-4 hidden sm:inline-block">
 				Bem-vindo de volta ao <span className="text-gradient-green-light">HelioSync</span>
 			</h1>
-			<p className="mt-4 max-w-xl text-lead text-muted">
+			<p className="mt-2 max-w-xl text-lead text-muted sm:mt-4 hidden sm:inline-block	">
 				Acompanhe sua energia solar em tempo real. Use seus dados para crescer com o sol.
 			</p>
 
-			<form className="mt-8 flex flex-col gap-6">
+			<form className="mt-5 flex flex-col gap-4 sm:mt-8 sm:gap-6">
 				<div className="space-y-2">
 					<label htmlFor="login-email" className="text-caption font-semibold text-secondary">
 						Email
@@ -47,7 +47,7 @@ export function LoginForm({
 						placeholder="você@heliosync.com"
 						value={email}
 						onChange={handleEmailChange}
-						className="h-13 w-full rounded-2xl border border-foreground/12 bg-white/3 px-5 text-body text-foreground placeholder:text-muted/90 transition-all duration-300 focus:border-helio-green-light/60 focus:outline-none focus:ring-2 focus:ring-helio-green-light/20"
+						className="h-12 w-full rounded-2xl border border-foreground/12 bg-white/3 px-4 text-body text-foreground placeholder:text-muted/90 transition-all duration-300 focus:border-helio-green-light/60 focus:outline-none focus:ring-2 focus:ring-helio-green-light/20 sm:h-13 sm:px-5"
 						required
 					/>
 				</div>
@@ -62,7 +62,7 @@ export function LoginForm({
 						placeholder="Digite sua senha"
 						value={password}
 						onChange={handlePasswordChange}
-						className="h-13 w-full rounded-2xl border border-foreground/12 bg-white/3 px-5 text-body text-foreground placeholder:text-muted/90 transition-all duration-300 focus:border-helio-gold/60 focus:outline-none focus:ring-2 focus:ring-helio-gold/20"
+						className="h-12 w-full rounded-2xl border border-foreground/12 bg-white/3 px-4 text-body text-foreground placeholder:text-muted/90 transition-all duration-300 focus:border-helio-gold/60 focus:outline-none focus:ring-2 focus:ring-helio-gold/20 sm:h-13 sm:px-5"
 						required
 					/>
 

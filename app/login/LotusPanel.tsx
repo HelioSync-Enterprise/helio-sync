@@ -13,14 +13,18 @@ export function LotusPanel({ passwordLength, isComplete, totalPetals = 12 }: Lot
 	const innerAngles = useMemo(() => petals.map(index => index * 30 + 15), [petals]);
 
 	return (
-		<section className="relative flex items-center justify-center">
-			<div
-				className="absolute inset-0 rounded-4xl border border-foreground/10 bg-[linear-gradient(135deg,rgba(12,32,18,0.65),rgba(9,14,10,0.6))]"
-				style={{ boxShadow: 'inset 0 0 80px rgba(50, 205, 50, 0.08)' }}
-			/>
-			<div className="relative z-10 flex flex-col items-center gap-4 text-center">
-				<svg aria-hidden="true" viewBox="0 0 512 512" className="h-56 w-56">
-					<style>{`
+		<>
+			<h1 className="mt-2 text-heading text-center text-primary sm:mt-4 inline-block sm:hidden">
+				Bem-vindo de volta ao <span className="text-gradient-green-light">HelioSync</span>
+			</h1>
+			<section className="relative flex items-center justify-center order-1 sm:order-2">
+				<div
+					className="absolute inset-0 rounded-4xl border border-foreground/10 bg-[linear-gradient(135deg,rgba(12,32,18,0.65),rgba(9,14,10,0.6))]"
+					style={{ boxShadow: 'inset 0 0 80px rgba(50, 205, 50, 0.08)' }}
+				/>
+				<div className="relative z-10 flex flex-col items-center gap-4 text-center">
+					<svg aria-hidden="true" viewBox="0 0 512 512" className="h-40 w-40 sm:h-56 sm:w-56">
+						<style>{`
 						.lotus-petal {
 							transition: opacity 180ms ease-out;
 						}
@@ -49,71 +53,72 @@ export function LotusPanel({ passwordLength, isComplete, totalPetals = 12 }: Lot
 							}
 						}
 					`}</style>
-					<defs>
-						<path id="petal" d="M0,-180 C40,-140 40,-60 0,-20 C-40,-60 -40,-140 0,-180 Z" />
-						<path id="vein" d="M0,-100 Q3,-90 2,-60 Q1,-35 0,-22 Q-1,-35 -2,-60 Q-3,-90 0,-100 Z" />
-						<radialGradient id="center-grad" cx="35%" cy="35%" r="65%">
-							<stop offset="0%" stopColor="#fff3a0" />
-							<stop offset="55%" stopColor="#f4d03f" />
-							<stop offset="100%" stopColor="#e4b92d" />
-						</radialGradient>
-					</defs>
-					<g transform="translate(256 256)">
-						<g className={`lotus-rotator ${isComplete ? 'lotus-rotator-active' : ''}`}>
-							<g>
-								{outerAngles.map((angle, index) => (
-									<use
-										key={`outer-${index}`}
-										href="#petal"
-										transform={`rotate(${angle})`}
-										fill="#8e44ad"
-										className="lotus-petal"
-										style={{ opacity: index < visiblePetals ? 1 : 0 }}
-									/>
-								))}
+						<defs>
+							<path id="petal" d="M0,-180 C40,-140 40,-60 0,-20 C-40,-60 -40,-140 0,-180 Z" />
+							<path id="vein" d="M0,-100 Q3,-90 2,-60 Q1,-35 0,-22 Q-1,-35 -2,-60 Q-3,-90 0,-100 Z" />
+							<radialGradient id="center-grad" cx="35%" cy="35%" r="65%">
+								<stop offset="0%" stopColor="#fff3a0" />
+								<stop offset="55%" stopColor="#f4d03f" />
+								<stop offset="100%" stopColor="#e4b92d" />
+							</radialGradient>
+						</defs>
+						<g transform="translate(256 256)">
+							<g className={`lotus-rotator ${isComplete ? 'lotus-rotator-active' : ''}`}>
+								<g>
+									{outerAngles.map((angle, index) => (
+										<use
+											key={`outer-${index}`}
+											href="#petal"
+											transform={`rotate(${angle})`}
+											fill="#8e44ad"
+											className="lotus-petal"
+											style={{ opacity: index < visiblePetals ? 1 : 0 }}
+										/>
+									))}
+								</g>
+								<g>
+									{innerAngles.map((angle, index) => (
+										<use
+											key={`inner-${index}`}
+											href="#petal"
+											transform={`rotate(${angle})`}
+											fill="#a569bd"
+											className="lotus-petal"
+											style={{ opacity: index < visiblePetals ? 1 : 0 }}
+										/>
+									))}
+								</g>
+								<g>
+									{innerAngles.map((angle, index) => (
+										<use
+											key={`small-${index}`}
+											href="#petal"
+											transform={`rotate(${angle}) scale(0.7)`}
+											fill="#d2b4de"
+											className="lotus-petal"
+											style={{ opacity: index < visiblePetals ? 1 : 0 }}
+										/>
+									))}
+								</g>
+								<g>
+									{innerAngles.map((angle, index) => (
+										<use
+											key={`vein-${index}`}
+											href="#vein"
+											transform={`rotate(${angle})`}
+											fill="#7d3c98"
+											opacity={index < visiblePetals ? 0.55 : 0}
+											className="lotus-petal"
+										/>
+									))}
+								</g>
 							</g>
-							<g>
-								{innerAngles.map((angle, index) => (
-									<use
-										key={`inner-${index}`}
-										href="#petal"
-										transform={`rotate(${angle})`}
-										fill="#a569bd"
-										className="lotus-petal"
-										style={{ opacity: index < visiblePetals ? 1 : 0 }}
-									/>
-								))}
-							</g>
-							<g>
-								{innerAngles.map((angle, index) => (
-									<use
-										key={`small-${index}`}
-										href="#petal"
-										transform={`rotate(${angle}) scale(0.7)`}
-										fill="#d2b4de"
-										className="lotus-petal"
-										style={{ opacity: index < visiblePetals ? 1 : 0 }}
-									/>
-								))}
-							</g>
-							<g>
-								{innerAngles.map((angle, index) => (
-									<use
-										key={`vein-${index}`}
-										href="#vein"
-										transform={`rotate(${angle})`}
-										fill="#7d3c98"
-										opacity={index < visiblePetals ? 0.55 : 0}
-										className="lotus-petal"
-									/>
-								))}
-							</g>
+							<circle cx="0" cy="0" r="60" fill="url(#center-grad)" />
+							<circle cx="-12" cy="-16" r="14" fill="#fff7b3" opacity="0.7" />
 						</g>
-						<circle cx="0" cy="0" r="60" fill="url(#center-grad)" />
-						<circle cx="-12" cy="-16" r="14" fill="#fff7b3" opacity="0.7" />
-					</g>
-				</svg>
-			</div>
-		</section>
+					</svg>
+				</div>
+			</section>
+		</>
 	);
 }
