@@ -14,12 +14,15 @@ export function LotusPanel({ passwordLength, isComplete, totalPetals = 12 }: Lot
 
 	return (
 		<>
-			<h1 className="mt-2 text-heading text-center text-primary sm:mt-4 inline-block sm:hidden">
+			<h1 className="mt-12 text-heading text-center text-primary inline-block sm:hidden">
 				Bem-vindo de volta ao <span className="text-gradient-green-light">HelioSync</span>
 			</h1>
-			<section className="relative flex items-center justify-center order-1 sm:order-2">
+			<p className="mt-8 mx-2 text-center max-w-xl text-lead text-muted mb-auto inline-block sm:hidden">
+				Acompanhe sua energia solar em tempo real. Use seus dados para crescer com o sol.
+			</p>
+			<section className="relative h-fit sm:h-full flex items-center justify-center order-1 sm:order-2">
 				<div
-					className="absolute inset-0 rounded-4xl border border-foreground/10 bg-[linear-gradient(135deg,rgba(12,32,18,0.65),rgba(9,14,10,0.6))]"
+					className="absolute sm:inset-0 rounded-4xl sm:border sm:border-foreground/10 sm:bg-[linear-gradient(135deg,rgba(12,32,18,0.65),rgba(9,14,10,0.6))]"
 					style={{ boxShadow: 'inset 0 0 80px rgba(50, 205, 50, 0.08)' }}
 				/>
 				<div className="relative z-10 flex flex-col items-center gap-4 text-center">

@@ -28,7 +28,7 @@ export function LoginForm({
 	};
 
 	return (
-		<section className="flex flex-col text-center sm:text-start sm:justify-center order-2 sm:order-1">
+		<section className="flex flex-col text-center sm:text-start sm:justify-center mb-10 sm:mb-0 order-2 sm:order-1">
 			<h1 className="mt-2 text-heading text-primary sm:mt-4 hidden sm:inline-block">
 				Bem-vindo de volta ao <span className="text-gradient-green-light">HelioSync</span>
 			</h1>
@@ -36,9 +36,9 @@ export function LoginForm({
 				Acompanhe sua energia solar em tempo real. Use seus dados para crescer com o sol.
 			</p>
 
-			<form className="mt-5 flex flex-col gap-4 sm:mt-8 sm:gap-6">
+			<form className="flex flex-col gap-4 sm:mt-8 sm:gap-6 text-start ">
 				<div className="space-y-2">
-					<label htmlFor="login-email" className="text-caption font-semibold text-secondary">
+					<label htmlFor="login-email" className="text-caption font-semibold text-secondary pl-10">
 						Email
 					</label>
 					<input
@@ -53,7 +53,7 @@ export function LoginForm({
 				</div>
 
 				<div className="space-y-3">
-					<label htmlFor="login-password" className="text-caption font-semibold text-secondary">
+					<label htmlFor="login-password" className="text-caption font-semibold text-secondary pl-10">
 						Senha
 					</label>
 					<input
@@ -66,7 +66,7 @@ export function LoginForm({
 						required
 					/>
 
-					<div className="space-y-2">
+					<div className="space-y-2 hidden sm:block">
 						<div className="flex items-center justify-end text-caption text-muted">
 							<span aria-live="polite">{progressLabel}</span>
 						</div>
@@ -79,8 +79,8 @@ export function LoginForm({
 					</div>
 				</div>
 
-				<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-					<Button variant="sendMessage" className="sm:w-auto" type="submit">
+				<div className="flex gap-3 justify-between pr-4 sm:pr-0 sm:items-center sm:flex-row sm:justify-between">
+					<Button variant="sendMessage" className="sm:w-auto max-w-1/2 sm:max-w-none h-10 sm:h-auto" type="submit">
 						Entrar
 					</Button>
 					<button
