@@ -8,6 +8,7 @@ export function HeaderBrand() {
 				alt="Logo da HelioSync"
 				width={50}
 				height={50}
+				priority
 				className="mr-2 h-10 w-10 rounded-2xl sm:h-12 sm:w-12"
 			/>
 			<p className="text-[1.2rem] leading-[1.2] text-primary sm:text-brand">

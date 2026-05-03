@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { FiPlay, FiPause, FiFastForward, FiRewind } from 'react-icons/fi';
@@ -50,7 +51,7 @@ export default function SimulatorContainer() {
 	return (
 		<div className="flex h-full w-full flex-col gap-4">
 			<div className="relative h-64 min-h-75 w-full flex-1 md:h-full">
-				<Canvas camera={{ position: [5, 5, 5], fov: 50 }} shadows>
+				<Canvas camera={{ position: [5, 5, 5], fov: 50 }} shadows={{ type: THREE.PCFShadowMap }}>
 					<OrbitControls makeDefault />
 					<SolarTracker latitude={latitude} dayOfYear={dayOfYear} hourAngle={hourAngle} />
 				</Canvas>
