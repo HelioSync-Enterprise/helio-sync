@@ -23,11 +23,13 @@ export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }:
 	}, [earthTexture]);
 
 	const globeRadius = 20;
-	const sunDistance = 30;
+	const sunCalculationDistance = 999;
+	const sunVisualDistance = 30;
 	const panelScale = 1;
 	const panelHeight = 0.35 * panelScale;
 	const saoPauloLongitude = degToRad(-46.633);
-	const planeSunDistance = 10;
+	const planeSunCalculationDistance = 10;
+	const planeSunVisualDistance = 7;
 
 	const { alpha, azimute } = useMemo(() => {
 		if (isGlobe) {
@@ -53,20 +55,42 @@ export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }:
 		[surfacePosition, globeRadius, panelHeight],
 	);
 
-	const sunPosition = useMemo(() => {
+	const { sunPositionVisual, sunPositionForCalc } = useMemo(() => {
 		if (!isGlobe) {
-			const sunX = Math.sin(azimute) * Math.cos(alpha) * planeSunDistance;
-			const sunY = Math.sin(alpha) * planeSunDistance;
-			const sunZ = -Math.cos(azimute) * Math.cos(alpha) * planeSunDistance;
-			return new THREE.Vector3(sunX, sunY, sunZ);
+			const direction = new THREE.Vector3(
+				Math.sin(azimute) * Math.cos(alpha),
+				Math.sin(alpha),
+				-Math.cos(azimute) * Math.cos(alpha),
+			).normalize();
+			return {
+				sunPositionVisual: direction.clone().multiplyScalar(planeSunVisualDistance),
+				sunPositionForCalc: direction.clone().multiplyScalar(planeSunCalculationDistance),
+			};
 		}
 
 		const declination = degToRad(23.45 * Math.sin(degToRad((360 / 365) * (dayOfYear - 81))));
-		const angle = degToRad(hourAngle);
-		const y = Math.sin(declination) * sunDistance;
-		const horizontalRadius = Math.cos(declination) * sunDistance;
-		return new THREE.Vector3(Math.cos(angle) * horizontalRadius, y, Math.sin(angle) * horizontalRadius);
-	}, [isGlobe, azimute, alpha, hourAngle, dayOfYear, planeSunDistance, sunDistance]);
+		const angle = degToRad(hourAngle) + -saoPauloLongitude;
+		const direction = new THREE.Vector3(
+			Math.cos(angle) * Math.cos(declination),
+			Math.sin(declination),
+			Math.sin(angle) * Math.cos(declination),
+		).normalize();
+		return {
+			sunPositionVisual: direction.clone().multiplyScalar(sunVisualDistance),
+			sunPositionForCalc: direction.clone().multiplyScalar(sunCalculationDistance),
+		};
+	}, [
+		isGlobe,
+		azimute,
+		alpha,
+		hourAngle,
+		dayOfYear,
+		planeSunCalculationDistance,
+		planeSunVisualDistance,
+		sunCalculationDistance,
+		sunVisualDistance,
+		saoPauloLongitude,
+	]);
 
 	const globeState = useMemo(() => {
 		if (!isGlobe) {
@@ -76,7 +100,7 @@ export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }:
 		const surfaceUp = panelPosition.clone().normalize();
 		const baseUp = new THREE.Vector3(0, 1, 0);
 		const surfaceQuat = new THREE.Quaternion().setFromUnitVectors(baseUp, surfaceUp);
-		const sunDirection = sunPosition.clone().sub(panelPosition).normalize();
+		const sunDirection = sunPositionForCalc.clone().sub(panelPosition).normalize();
 		const isNightAtPanel = sunDirection.dot(surfaceUp) <= 0;
 
 		if (isNightAtPanel) {
@@ -94,7 +118,7 @@ export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }:
 		const panelQuat = tiltQuat.multiply(surfaceQuat);
 
 		return { surfaceQuat, panelQuat, isNightAtPanel };
-	}, [isGlobe, panelPosition, sunPosition]);
+	}, [isGlobe, panelPosition, sunPositionForCalc]);
 
 	const planeState = useMemo(() => {
 		if (isGlobe) {
@@ -117,10 +141,10 @@ export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }:
 			<ambientLight intensity={isNightAtPanel ? 0.2 : 0.35} />
 
 			{/* Luz direcionada que age efetivamente como raios de Sol - desliga se estiver abaixo do horizonte */}
-			<directionalLight position={sunPosition.toArray()} intensity={1.4} castShadow />
+			<directionalLight position={sunPositionVisual.toArray()} intensity={1.4} castShadow />
 
 			{/* Esfera Amarela simulando visualmente onde o sol está flutuando */}
-			<mesh position={sunPosition.toArray()}>
+			<mesh position={sunPositionVisual.toArray()}>
 				<sphereGeometry args={[0.5, 32, 32]} />
 				<meshBasicMaterial color="#fbbf24" />
 			</mesh>
