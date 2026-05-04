@@ -28,8 +28,8 @@ export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }:
 	const panelScale = 1;
 	const panelHeight = 0.35 * panelScale;
 	const saoPauloLongitude = degToRad(-46.633);
-	const planeSunCalculationDistance = 10;
-	const planeSunVisualDistance = 7;
+	const planeSunCalculationDistance = 999;
+	const planeSunVisualDistance = 12;
 
 	const { alpha, azimute } = useMemo(() => {
 		if (isGlobe) {

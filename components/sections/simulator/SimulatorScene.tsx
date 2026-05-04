@@ -40,8 +40,8 @@ function SimulatorOrbitControls({ minDistance, maxDistance }: SimulatorOrbitCont
 
 export function SimulatorScene({ mode, latitude, dayOfYear, hourAngle }: SimulatorSceneProps) {
 	const cameraPosition: [number, number, number] = mode === 'globe' ? [0, 0, 55] : [5, 5, 5];
-	const minDistance = mode === 'globe' ? 30 : 3;
-	const maxDistance = mode === 'globe' ? 90 : 14;
+	const minDistance = mode === 'globe' ? 22 : 1;
+	const maxDistance = mode === 'globe' ? 90 : 200;
 
 	return (
 		<div className="relative h-64 min-h-75 w-full flex-1 md:h-full">
