@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { useLoader } from '@react-three/fiber';
+import { useEffect, useMemo, useRef } from 'react';
+import { useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 import { calculateSolarAngles, degToRad } from './utils/solar-calculations';
 
@@ -13,6 +13,32 @@ interface SolarTrackerProps {
 export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }: SolarTrackerProps) {
 	const earthTexture = useLoader(THREE.TextureLoader, '/images/earth-map.png');
 	const isGlobe = mode === 'globe';
+	const guideGroupRef = useRef<THREE.Group | null>(null);
+	const guideStartTimeRef = useRef<number | null>(null);
+	const guideDurationSeconds = 4.5;
+
+	useEffect(() => {
+		guideStartTimeRef.current = null;
+	}, [isGlobe]);
+
+	useFrame(({ clock }) => {
+		const guideGroup = guideGroupRef.current;
+		if (!guideGroup) {
+			return;
+		}
+
+		if (!isGlobe) {
+			guideGroup.visible = false;
+			return;
+		}
+
+		if (guideStartTimeRef.current === null) {
+			guideStartTimeRef.current = clock.getElapsedTime();
+		}
+
+		const elapsed = clock.getElapsedTime() - guideStartTimeRef.current;
+		guideGroup.visible = elapsed < guideDurationSeconds;
+	});
 
 	const earthMaterial = useMemo(() => {
 		const texture = earthTexture.clone();
@@ -53,6 +79,14 @@ export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }:
 	const panelPosition = useMemo(
 		() => surfacePosition.clone().setLength(globeRadius + panelHeight),
 		[surfacePosition, globeRadius, panelHeight],
+	);
+	const panelBeaconPosition = useMemo(
+		() => surfacePosition.clone().setLength(globeRadius + panelHeight + 0.35),
+		[surfacePosition, globeRadius, panelHeight],
+	);
+	const panelIndicatorLine = useMemo(
+		() => new Float32Array([0, 0, 0, panelPosition.x, panelPosition.y, panelPosition.z]),
+		[panelPosition],
 	);
 
 	const { sunPositionVisual, sunPositionForCalc } = useMemo(() => {
@@ -155,6 +189,20 @@ export function SolarTracker({ latitude, dayOfYear, hourAngle, mode = 'globe' }:
 						<sphereGeometry args={[globeRadius, 64, 64]} />
 						<primitive object={earthMaterial} attach="material" />
 					</mesh>
+
+					{/* Guia visual para localizar a placa no globo */}
+					<group ref={guideGroupRef}>
+						<line>
+							<bufferGeometry>
+								<bufferAttribute attach="attributes-position" args={[panelIndicatorLine, 3]} />
+							</bufferGeometry>
+							<lineBasicMaterial color="#fbbf24" transparent opacity={0.6} />
+						</line>
+						<mesh position={panelBeaconPosition.toArray()}>
+							<sphereGeometry args={[0.25, 16, 16]} />
+							<meshBasicMaterial color="#fbbf24" />
+						</mesh>
+					</group>
 
 					{/* Poste central Fixo, onde a placa vai ser fixada */}
 					<group position={basePosition.toArray()} quaternion={globeState.surfaceQuat}>
