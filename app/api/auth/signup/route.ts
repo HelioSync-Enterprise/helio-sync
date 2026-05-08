@@ -3,34 +3,43 @@ import bcrypt from 'bcryptjs';
 import { connectToDatabase } from '@/lib/db';
 import { UserModel } from '@/lib/models/user';
 
-export async function GET() {
-	await connectToDatabase();
-	const users = await UserModel.find().select('-passwordHash').lean();
-	return NextResponse.json({ data: users });
+const MIN_PASSWORD_LENGTH = 8;
+
+function isValidEmail(value: string) {
+	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-type CreateUserBody = {
+type SignupBody = {
 	name?: string;
 	email?: string;
-	role?: 'admin' | 'operator' | 'viewer';
 	password?: string;
 };
 
 export async function POST(request: Request) {
 	await connectToDatabase();
-	const body = (await request.json().catch(() => null)) as CreateUserBody | null;
+	const body = (await request.json().catch(() => null)) as SignupBody | null;
 
 	if (!body) {
 		return NextResponse.json({ message: 'Payload invalido.' }, { status: 400 });
 	}
 
 	const name = body.name?.trim();
-	const email = body.email?.trim();
-	const role = body.role;
+	const email = body.email?.trim().toLowerCase();
 	const password = body.password;
 
 	if (!name || !email || !password) {
 		return NextResponse.json({ message: 'Nome, e-mail e senha sao obrigatorios.' }, { status: 400 });
+	}
+
+	if (!isValidEmail(email)) {
+		return NextResponse.json({ message: 'E-mail invalido.' }, { status: 400 });
+	}
+
+	if (password.length < MIN_PASSWORD_LENGTH) {
+		return NextResponse.json(
+			{ message: `A senha deve ter pelo menos ${MIN_PASSWORD_LENGTH} caracteres.` },
+			{ status: 400 },
+		);
 	}
 
 	const existing = await UserModel.findOne({ email }).lean();
@@ -39,6 +48,17 @@ export async function POST(request: Request) {
 	}
 
 	const passwordHash = await bcrypt.hash(password, 10);
-	const user = await UserModel.create({ name, email, role, passwordHash });
-	return NextResponse.json({ data: user }, { status: 201 });
+	const user = await UserModel.create({ name, email, passwordHash, role: 'viewer' });
+
+	return NextResponse.json(
+		{
+			data: {
+				id: user.id,
+				name: user.name,
+				email: user.email,
+				role: user.role,
+			},
+		},
+		{ status: 201 },
+	);
 }

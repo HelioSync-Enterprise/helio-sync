@@ -1,11 +1,12 @@
 import mongoose, { Schema } from 'mongoose';
 
-export type UserRole = 'admin' | 'user';
+export type UserRole = 'admin' | 'operator' | 'viewer';
 
 export interface UserDocument extends mongoose.Document {
 	name: string;
 	email: string;
 	role: UserRole;
+	passwordHash: string;
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -14,7 +15,8 @@ const UserSchema = new Schema<UserDocument>(
 	{
 		name: { type: String, required: true, trim: true },
 		email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-		role: { type: String, enum: ['admin', 'user'], default: 'user' },
+		role: { type: String, enum: ['admin', 'operator', 'viewer'], default: 'viewer' },
+		passwordHash: { type: String, required: true },
 	},
 	{
 		timestamps: true,
