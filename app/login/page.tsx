@@ -38,10 +38,7 @@ export default function LoginPage() {
 
 		try {
 			const endpoint = mode === 'signup' ? '/api/auth/signup' : '/api/auth/signin';
-			const payload =
-				mode === 'signup'
-					? { name, email, password }
-					: { email, password };
+			const payload = mode === 'signup' ? { name, email, password } : { email, password };
 
 			const response = await fetch(endpoint, {
 				method: 'POST',

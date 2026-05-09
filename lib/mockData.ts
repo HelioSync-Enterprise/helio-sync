@@ -22,6 +22,7 @@ export type MockTelemetry = {
 	id: string;
 	panelId: string;
 	timestamp: string;
+	voltageV: number;
 	powerW: number;
 	angleDeg: number;
 };
@@ -93,6 +94,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_001',
 		panelId: 'pnl_001',
 		timestamp: '2026-05-05T08:00:00Z',
+		voltageV: 21.4,
 		powerW: 420,
 		angleDeg: 12.4,
 	},
@@ -100,6 +102,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_002',
 		panelId: 'pnl_001',
 		timestamp: '2026-05-05T08:30:00Z',
+		voltageV: 22.1,
 		powerW: 260,
 		angleDeg: 14.1,
 	},
@@ -107,6 +110,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_003',
 		panelId: 'pnl_002',
 		timestamp: '2026-05-05T09:00:00Z',
+		voltageV: 21.9,
 		powerW: 300,
 		angleDeg: 16.3,
 	},
@@ -114,6 +118,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_004',
 		panelId: 'pnl_001',
 		timestamp: '2026-05-05T09:30:00Z',
+		voltageV: 22.6,
 		powerW: 340,
 		angleDeg: 18.7,
 	},
@@ -121,6 +126,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_005',
 		panelId: 'pnl_001',
 		timestamp: '2026-05-05T10:00:00Z',
+		voltageV: 23.2,
 		powerW: 380,
 		angleDeg: 20.1,
 	},
@@ -128,6 +134,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_006',
 		panelId: 'pnl_001',
 		timestamp: '2026-05-05T10:30:00Z',
+		voltageV: 23.6,
 		powerW: 410,
 		angleDeg: 21.6,
 	},
@@ -135,6 +142,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_007',
 		panelId: 'pnl_002',
 		timestamp: '2026-05-05T08:15:00Z',
+		voltageV: 20.8,
 		powerW: 140,
 		angleDeg: 10.8,
 	},
@@ -142,6 +150,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_008',
 		panelId: 'pnl_002',
 		timestamp: '2026-05-05T08:45:00Z',
+		voltageV: 21.1,
 		powerW: 160,
 		angleDeg: 12.0,
 	},
@@ -149,6 +158,7 @@ export const mockTelemetry: MockTelemetry[] = [
 		id: 'tel_009',
 		panelId: 'pnl_002',
 		timestamp: '2026-05-05T09:15:00Z',
+		voltageV: 21.5,
 		powerW: 175,
 		angleDeg: 13.2,
 	},
