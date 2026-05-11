@@ -1,6 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui/Button';
+import { buttonVariants } from '@/styles/variants';
+import Link from 'next/link';
 
 function handleScrollTo(elementId: string) {
 	const element = document.getElementById(elementId);
@@ -15,9 +17,9 @@ export function HeroActions() {
 			<Button variant="explore" className="w-full sm:w-auto" onClick={() => handleScrollTo('funcionalidades')}>
 				Explorar
 			</Button>
-			<Button variant="createAccount" className="w-full sm:w-auto">
+			<Link href="/login" className={`${buttonVariants({ variant: 'createAccount' })} w-full sm:w-auto`} >
 				Criar Conta
-			</Button>
+			</Link>
 		</div>
 	);
 }

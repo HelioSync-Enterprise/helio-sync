@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
+import { createAuthToken, JWT_COOKIE_NAME } from '@/lib/auth';
 import { connectToDatabase } from '@/lib/db';
 import { UserModel } from '@/lib/models/user';
 
@@ -50,7 +51,14 @@ export async function POST(request: Request) {
 	const passwordHash = await bcrypt.hash(password, 10);
 	const user = await UserModel.create({ name, email, passwordHash, role: 'viewer' });
 
-	return NextResponse.json(
+	const token = await createAuthToken({
+		sub: user.id,
+		email: user.email,
+		role: user.role,
+		name: user.name,
+	});
+
+	const response = NextResponse.json(
 		{
 			data: {
 				id: user.id,
@@ -61,4 +69,14 @@ export async function POST(request: Request) {
 		},
 		{ status: 201 },
 	);
+
+	response.cookies.set(JWT_COOKIE_NAME, token, {
+		httpOnly: true,
+		sameSite: 'lax',
+		path: '/',
+		maxAge: 60 * 60 * 24 * 7,
+		secure: process.env.NODE_ENV === 'production',
+	});
+
+	return response;
 }
