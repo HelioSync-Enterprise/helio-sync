@@ -1,110 +1,31 @@
 # Helio Sync
 
-Landing page institucional da plataforma Helio Sync, focada em gestão e rastreamento solar inteligente.
+Helio Sync é uma plataforma inteligente voltada para elevar a eficiência da energia solar com um sistema matemático para obter a posição do sol em tempo real
 
-O projeto apresenta proposta de valor, modelo matematico, simulacão, estatisticas, funcionamento da solucão e formulário de contato com envio de e-mail via Resend.
+O projeto apresenta uma leitura contemporânea da energia solar: um dispositivo articulado que acompanha o sol com precisão, projetado por um desenho inspirado na natureza, e uma interface de controle completa.
 
-## Stack
+## Sobre o Helio Sync
 
-- Next.js 16 (App Router)
-- React 19 + TypeScript
-- Tailwind CSS 4
-- `tailwind-variants` e `tailwind-merge`
-- `react-icons`
-- API Route no servidor para contato
-- Resend para envio de e-mails
-- Vercel Analytics
+Em vez de depender de placas fixas, o sistema usa uma estrutura articulada que se abre para maximizar a incidência luminosa e se fecha quando precisa proteger o conjunto. Essa escolha combina eficiência e cuidado com o hardware.
 
-## Funcionalidades
+O movimento é calculado para acompanhar a trajetória do sol em dois eixos, o que permite ajustes finos durante o dia. Essa precisão eleva o aproveitamento energético, evitando perdas comuns em posições estáticas.
 
-- SEO com metadados completos no App Router
-- `robots.txt` e `sitemap.xml` gerados via rotas de metadata do Next.js
-- Formulário de contato com validacão e feedback para o usuario
-- Endpoint backend para disparo de e-mail
+No centro da solução existe um dispositivo embarcado que conecta o equipamento ao servidor. Ele recebe parâmetros do ambiente, envia a telemetria de funcionamento e mantém o sistema sincronizado com a plataforma digital. Assim, cada equipamento pode ser monitorado com clareza, a partir de dados reais de tensão, corrente, potência e eficiência.
 
-## Requisitos
+O sistema também permite ações remotas que tornam a operação prática. É possível identificar um equipamento fisicamente por meio de um movimento visível, ou acionar o fechamento quando necessário. No painel, a informação chega em tempo real, traduzida em indicadores e histórico para tomada de decisão.
 
-- Node.js 20+
-- npm 10+
+## Participantes
 
-## Como executar localmente
+- [Renan Rodrigues de Meneses](https://renanrod.vercel.app)
+- [Igor Martins Leocádio](https://www.linkedin.com/in/igor-leoc%C3%A1dio-a68107329/)
+- [Gabriel Chagas Madureira](https://www.linkedin.com/in/gabriel-chagas-300b66352/)
+- [Pedro Henrique Resende Gomes](https://github.com/percels)
+- Nicolas de Camargo Pedroso
+- [Miguel Henrique dos Santos de Oliveira Moreira](https://github.com/Miguel0971)
+- [Samuel de Arruda Martins](https://www.linkedin.com/in/samuel-de-arruda-653671228/)
+- Vitória Sandei
 
-1. Instale as dependencias:
+## Documentos Técnicos
 
-```bash
-npm install
-```
-
-2. Configure as variaveis de ambiente criando o arquivo `.env.local` na raiz do projeto.
-
-3. Inicie o servidor de desenvolvimento:
-
-```bash
-npm run dev
-```
-
-4. Acesse:
-
-```text
-http://localhost:3000
-```
-
-## Variaveis de ambiente
-
-Crie um arquivo `.env.local` na raiz com os campos abaixo:
-
-```env
-# URL publica do site (usada em metadata, sitemap e robots)
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-
-# Chave da API Resend
-RESEND_API_KEY=
-
-# Destinatarios do contato (separe por virgula para varios)
-CONTACT_TO_EMAIL=contato@exemplo.com
-
-# Remetente do e-mail no Resend
-CONTACT_FROM_EMAIL=HelioSync <onboarding@resend.dev>
-```
-
-## API de contato
-
-Endpoint: `POST /api/contact`
-
-Payload esperado:
-
-```json
-{
-	"name": "Nome",
-	"email": "email@dominio.com",
-	"message": "Mensagem"
-}
-```
-
-Comportamento:
-
-- Valida campos obrigatorios
-- Valida formato de e-mail
-- Escapa HTML do conteudo recebido
-- Envia e-mail via Resend
-- Retorna JSON com status de sucesso ou erro
-
-## Scripts
-
-- `npm run dev`: ambiente de desenvolvimento
-- `npm run build`: build de producão
-- `npm run start`: sobe app em modo producão
-- `npm run lint`: lint do projeto
-
-## Deploy
-
-O deploy pode ser feito em qualquer plataforma que rode Next.js. Para Vercel:
-
-1. Conecte o repositorio.
-2. Configure as variaveis de ambiente.
-3. Realize o deploy.
-
-## Documentos
-
-- Documento tecnico: [docs/Rastreamento Solar.md](docs/Rastreamento%20Solar.md)
-- Mapa Mental: [docs/mapa.png](docs/mapa.png)
+- Modelo Matemático utilizado: [docs/Rastreamento Solar.md](docs/Rastreamento%20Solar.md)
+- Mapa mental: [docs/mapa.png](docs/mapa.png)
