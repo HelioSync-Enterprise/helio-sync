@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react';
 
 import { TelemetryChartCard } from './TelemetryChartCard';
+import { WeatherGridCard } from './WeatherCard';
 
 export function DashboardGrid() {
 	return (
 		<section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:auto-rows-[140px]">
 			<TelemetryChartCard />
-			<Card xSize={2} ySize={2} />
+			<WeatherGridCard />
 			<Card xSize={2} ySize={2} />
 			<Card xSize={1} ySize={1} />
 			<Card xSize={1} ySize={1} />
