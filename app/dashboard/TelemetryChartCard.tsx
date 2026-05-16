@@ -77,7 +77,7 @@ export function TelemetryChartCard() {
 		<div className="flex h-full flex-col gap-6 rounded-2xl border border-foreground/10 bg-[linear-gradient(180deg,rgba(6,14,6,0.9),rgba(6,14,6,0.6))] p-5 lg:col-span-3 lg:row-span-4">
 			<div className="flex flex-wrap items-start justify-between gap-4">
 				<div className="flex flex-col gap-2">
-					<span className="text-xs uppercase tracking-[0.24em] text-secondary">Analytics de geracao</span>
+					<span className="text-xs uppercase tracking-[0.24em] text-secondary">Analytics de geração</span>
 					<h2 className="text-lg font-semibold text-primary">Frota completa - volts gerados hoje</h2>
 					<span className="text-sm text-secondary">Atual: {latestVoltage.toFixed(1)} V</span>
 				</div>
@@ -103,7 +103,7 @@ export function TelemetryChartCard() {
 						className="h-full w-full"
 						preserveAspectRatio="none"
 						role="img"
-						aria-label="Grafico de volts gerados por tempo"
+						aria-label="Gráfico de volts gerados por tempo"
 					>
 						<defs>
 							<linearGradient id="telemetry-area" x1="0" x2="0" y1="0" y2="1">
@@ -176,12 +176,12 @@ export function TelemetryChartCard() {
 					<span className="text-xs">as {endLabel}</span>
 				</div>
 				<div className="flex flex-col gap-1">
-					<span className="text-xs uppercase tracking-[0.22em] text-muted">Media</span>
+					<span className="text-xs uppercase tracking-[0.22em] text-muted">Média</span>
 					<span className="text-lg font-semibold text-primary">{averageVoltage.toFixed(1)} V</span>
 					<span className="text-xs">dia inteiro</span>
 				</div>
 				<div className="flex flex-col gap-1">
-					<span className="text-xs uppercase tracking-[0.22em] text-muted">Geracao</span>
+					<span className="text-xs uppercase tracking-[0.22em] text-muted">Geração</span>
 					<span className="text-lg font-semibold text-helio-green-light">8.4 kWh</span>
 					<span className="text-xs">estimado</span>
 				</div>

@@ -11,7 +11,7 @@ export function DashboardHeader() {
 					<button
 						type="button"
 						className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 bg-white/5 text-primary transition hover:text-helio-gold"
-						aria-label="Notificacoes"
+						aria-label="Notificações"
 					>
 						<FaRegBell size={16} />
 						<span className="absolute right-1/5 top-1/5 h-2 w-2 rounded-full bg-helio-gold" />
@@ -21,7 +21,7 @@ export function DashboardHeader() {
 
 			<nav className="flex items-center gap-6 text-sm">
 				<a href="#" className="relative pb-2 text-primary transition hover:text-helio-gold">
-					Visao geral
+					Visão geral
 					<span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-helio-gold" />
 				</a>
 				<a href="#" className="relative pb-2 text-secondary transition hover:text-helio-gold">
