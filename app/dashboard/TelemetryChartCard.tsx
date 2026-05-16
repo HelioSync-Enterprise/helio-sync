@@ -1,3 +1,6 @@
+'use client';
+
+import { useMemo, useState } from 'react';
 import { mockTelemetry } from '@/lib/mockData';
 
 const chartWidth = 700;
@@ -11,10 +14,10 @@ type TelemetryPoint = {
 	voltageV: number;
 };
 
-function buildTelemetrySeries(): TelemetryPoint[] {
+function buildTelemetrySeries(entries: typeof mockTelemetry): TelemetryPoint[] {
 	const grouped = new Map<number, { sum: number; count: number }>();
 
-	for (const entry of mockTelemetry) {
+	for (const entry of entries) {
 		const timestamp = Date.parse(entry.timestamp);
 		const current = grouped.get(timestamp) ?? { sum: 0, count: 0 };
 		current.sum += entry.voltageV;
@@ -62,30 +65,92 @@ function buildChartPaths(series: TelemetryPoint[]) {
 	return { linePath, areaPath, minValue, maxValue };
 }
 
+type RangeMode = 'day' | 'week';
+
+function getReferenceDates(entries: typeof mockTelemetry) {
+	if (entries.length === 0) {
+		const now = new Date();
+		return {
+			latest: now,
+			startOfDay: now,
+			startOfWeek: now,
+		};
+	}
+
+	const latestTimestamp = Math.max(...entries.map(entry => Date.parse(entry.timestamp)));
+	const latest = new Date(latestTimestamp);
+	const startOfDay = new Date(latest);
+	startOfDay.setHours(0, 0, 0, 0);
+	const startOfWeek = new Date(latest);
+	startOfWeek.setDate(latest.getDate() - 6);
+	startOfWeek.setHours(0, 0, 0, 0);
+
+	return { latest, startOfDay, startOfWeek };
+}
+
+function filterTelemetry(entries: typeof mockTelemetry, range: RangeMode) {
+	const { latest, startOfDay, startOfWeek } = getReferenceDates(entries);
+	const start = range === 'day' ? startOfDay : startOfWeek;
+	const end = latest.getTime();
+
+	return entries.filter(entry => {
+		const timestamp = Date.parse(entry.timestamp);
+		return timestamp >= start.getTime() && timestamp <= end;
+	});
+}
+
+function formatLabel(timestamp: number, range: RangeMode) {
+	if (range === 'week') {
+		return new Date(timestamp).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+	}
+	return formatHourLabel(timestamp);
+}
+
 export function TelemetryChartCard() {
-	const series = buildTelemetrySeries();
+	const [range, setRange] = useState<RangeMode>('day');
+	const telemetry = useMemo(() => filterTelemetry(mockTelemetry, range), [range]);
+	const series = useMemo(() => buildTelemetrySeries(telemetry), [telemetry]);
 	const { linePath, areaPath, minValue, maxValue } = buildChartPaths(series);
 	const latestVoltage = series.at(-1)?.voltageV ?? 0;
 	const peakVoltage = maxValue;
 	const averageVoltage = series.length ? series.reduce((acc, point) => acc + point.voltageV, 0) / series.length : 0;
 	const chartRange = Math.max(maxValue - minValue, 1);
-	const startLabel = series.length ? formatHourLabel(series[0].timestamp) : '--:--';
-	const endLabel = series.length ? formatHourLabel(series[series.length - 1].timestamp) : '--:--';
-	const midLabel = series.length ? formatHourLabel(series[Math.floor(series.length / 2)].timestamp) : '--:--';
+	const startLabel = series.length ? formatLabel(series[0].timestamp, range) : '--:--';
+	const endLabel = series.length ? formatLabel(series[series.length - 1].timestamp, range) : '--:--';
+	const midLabel = series.length ? formatLabel(series[Math.floor(series.length / 2)].timestamp, range) : '--:--';
+	const rangeLabel = range === 'day' ? 'hoje' : 'na  semana';
 
 	return (
 		<div className="flex h-full flex-col gap-6 rounded-2xl border border-foreground/10 bg-[linear-gradient(180deg,rgba(6,14,6,0.9),rgba(6,14,6,0.6))] p-5 lg:col-span-3 lg:row-span-4">
 			<div className="flex flex-wrap items-start justify-between gap-4">
 				<div className="flex flex-col gap-2">
 					<span className="text-xs uppercase tracking-[0.24em] text-secondary">Analytics de geração</span>
-					<h2 className="text-lg font-semibold text-primary">Frota completa - volts gerados hoje</h2>
+					<h2 className="text-lg font-semibold text-primary">Frota completa - volts gerados {rangeLabel}</h2>
 					<span className="text-sm text-secondary">Atual: {latestVoltage.toFixed(1)} V</span>
 				</div>
 				<div className="flex items-center gap-3 text-xs text-secondary">
-					<span className="rounded-full border border-foreground/10 bg-white/5 px-3 py-1 text-primary">
+					<button
+						type="button"
+						className={`rounded-full border px-3 py-1 transition ${
+							range === 'day'
+								? 'border-foreground/10 bg-white/5 text-primary'
+								: 'border-transparent text-secondary hover:text-primary'
+						}`}
+						onClick={() => setRange('day')}
+					>
 						Hoje
-					</span>
-					<span>Semana</span>
+					</button>
+					<button
+						type="button"
+						className={`rounded-full border px-3 py-1 transition ${
+							range === 'week'
+								? 'border-foreground/10 bg-white/5 text-primary'
+								: 'border-transparent text-secondary hover:text-primary'
+						}`}
+						onClick={() => setRange('week')}
+					>
+						Semana
+					</button>
 					<span className="rounded-full border border-helio-green/40 bg-helio-green/10 px-3 py-1 text-helio-green-light">
 						+12.5%
 					</span>

@@ -131,19 +131,19 @@ export function WeatherGridCard() {
 				<div className="flex flex-col gap-1">
 					<span className="text-[8px] uppercase tracking-widest text-muted">Nuvens</span>
 					<span suppressHydrationWarning className="text-xs font-semibold text-white/80">
-						{clima.clouds?.all ?? '--'}%
+						{clima.clouds?.all ?? '--'}<span className="text-muted">%</span>
 					</span>
 				</div>
 				<div className="flex flex-col gap-1 text-center">
 					<span className="text-[8px] uppercase tracking-widest text-muted">Umidade</span>
 					<span suppressHydrationWarning className="text-xs font-semibold text-white/80">
-						{clima.main.humidity}%
+						{clima.main.humidity}<span className="text-muted">%</span>
 					</span>
 				</div>
 				<div className="flex flex-col gap-1 text-center">
 					<span className="text-[8px] uppercase tracking-widest text-muted">Vento</span>
 					<span suppressHydrationWarning className="text-xs font-semibold text-white/80">
-						{Math.round(clima.wind.speed)} <small className="text-[8px] opacity-40">km/h</small>
+						{Math.round(clima.wind.speed)} <span className="text-muted">km/h</span>
 					</span>
 				</div>
 				<div className="flex flex-col gap-1 text-right">
