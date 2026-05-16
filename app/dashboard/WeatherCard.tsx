@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 type ClimaType = {
@@ -56,7 +57,7 @@ export function WeatherGridCard() {
 	if (!clima) {
 		return (
 			<div className="col-span-2 row-span-2 flex h-full items-center justify-center rounded-3xl border border-white/5 bg-black/20">
-				<span className="text-[10px] uppercase tracking-[0.3em] text-white/20 animate-pulse">
+				<span className="text-[10px] uppercase tracking-[0.3em] text-muted animate-pulse">
 					Sincronizando
 				</span>
 			</div>
@@ -81,12 +82,11 @@ export function WeatherGridCard() {
 						>
 							{Math.round(clima.main.temp)}
 						</span>
-						<span className="pb-1 text-xl font-light text-white/40">°C</span>
+						<span className="pb-1 text-xl font-light text-muted">°C</span>
 					</div>
 					<div className="flex flex-col gap-2">
-						<span className="text-[10px] uppercase tracking-[0.35em] text-white/40">Status Ambiental</span>
 						<h2 className="text-lg font-semibold text-white/90 uppercase tracking-tight">{clima.name}</h2>
-						<div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-white/30">
+						<div className="flex items-center gap-3 text-muted ">
 							<span suppressHydrationWarning>{dayLabel}</span>
 							<span className="h-1 w-1 rounded-full bg-helio-green-light/60" aria-hidden="true" />
 							<span suppressHydrationWarning>{weatherDescription}</span>
@@ -95,32 +95,32 @@ export function WeatherGridCard() {
 				</div>
 				<div className="flex h-full flex-col items-end justify-between">
 					<span className="text-[10px] uppercase tracking-[0.4em] text-helio-green-light/70">Agora</span>
-					<div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-black/45 ring-1 ring-white/10">
-						<img src={iconSrc} alt={weatherDescription} className="h-14 w-14" loading="lazy" />
+					<div className="flex h-40 w-40 items-center justify-center">
+						<Image src={iconSrc} alt={weatherDescription} className="h-40 w-40" loading="lazy" width={160} height={160} />
 					</div>
 				</div>
 			</div>
-			<div className="relative grid grid-cols-4 gap-3 rounded-2xl border border-foreground/10 bg-white/4 px-4 py-3">
+			<div className="relative flex justify-around items-center rounded-2xl border border-foreground/5 bg-white/1 px-4 py-3">
 				<div className="flex flex-col gap-1">
-					<span className="text-[8px] uppercase tracking-widest text-white/30">Nuvens</span>
+					<span className="text-[8px] uppercase tracking-widest text-muted">Nuvens</span>
 					<span suppressHydrationWarning className="text-xs font-semibold text-white/80">
 						{clima.clouds?.all ?? '--'}%
 					</span>
 				</div>
 				<div className="flex flex-col gap-1 text-center">
-					<span className="text-[8px] uppercase tracking-widest text-white/30">Umidade</span>
+					<span className="text-[8px] uppercase tracking-widest text-muted">Umidade</span>
 					<span suppressHydrationWarning className="text-xs font-semibold text-white/80">
 						{clima.main.humidity}%
 					</span>
 				</div>
 				<div className="flex flex-col gap-1 text-center">
-					<span className="text-[8px] uppercase tracking-widest text-white/30">Vento</span>
+					<span className="text-[8px] uppercase tracking-widest text-muted">Vento</span>
 					<span suppressHydrationWarning className="text-xs font-semibold text-white/80">
 						{Math.round(clima.wind.speed)} <small className="text-[8px] opacity-40">km/h</small>
 					</span>
 				</div>
 				<div className="flex flex-col gap-1 text-right">
-					<span className="text-[8px] uppercase tracking-widest text-white/30">Irrad.</span>
+					<span className="text-[8px] uppercase tracking-widest text-muted">Irrad.</span>
 					<span suppressHydrationWarning className="text-xs font-semibold text-helio-green-light">
 						{100 - (clima.clouds?.all ?? 0)}%
 					</span>
