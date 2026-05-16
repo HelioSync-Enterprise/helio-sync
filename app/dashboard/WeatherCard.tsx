@@ -5,25 +5,51 @@ import { useState, useEffect } from 'react';
 type ClimaType = {
 	name: string;
 	main: { temp: number; humidity: number };
-	weather: { description: string }[];
+	weather: { description: string; main?: string; id?: number }[];
 	wind: { speed: number };
 	clouds?: { all: number };
 };
 
 type WeatherIconKind = 'rain' | 'cloud' | 'sun' | 'partly';
 
-function getWeatherKind(description: string) {
-	const normalized = description.toLowerCase();
-	if (normalized.includes('chuva') || normalized.includes('rain')) {
-		return 'rain';
+function normalizeWeatherText(value: string) {
+	return value
+		.toLowerCase()
+		.normalize('NFD')
+		.replace(/\p{Diacritic}/gu, '');
+}
+
+function getWeatherKind(entry?: { description: string; main?: string }) {
+	if (!entry) {
+		return 'cloud';
 	}
-	if (normalized.includes('parcial') || normalized.includes('partly')) {
-		return 'partly';
-	}
-	if (normalized.includes('sol') || normalized.includes('sun') || normalized.includes('clear')) {
+
+	const description = normalizeWeatherText(entry.description);
+	const main = normalizeWeatherText(entry.main ?? '');
+
+	if (main.includes('clear')) {
 		return 'sun';
 	}
-	if (normalized.includes('nublado') || normalized.includes('cloud')) {
+	if (main.includes('rain') || main.includes('drizzle') || main.includes('thunder')) {
+		return 'rain';
+	}
+	if (main.includes('cloud')) {
+		return 'cloud';
+	}
+	if (description.includes('parcial') || description.includes('partly')) {
+		return 'partly';
+	}
+	if (
+		description.includes('sol') ||
+		description.includes('sun') ||
+		description.includes('clear') ||
+		description.includes('ceu limpo') ||
+		description.includes('limpo') ||
+		description.includes('ensolarado')
+	) {
+		return 'sun';
+	}
+	if (description.includes('nublado') || description.includes('cloud')) {
 		return 'cloud';
 	}
 	return 'cloud';
@@ -64,8 +90,9 @@ export function WeatherGridCard() {
 		);
 	}
 
-	const weatherDescription = clima.weather[0]?.description ?? '---';
-	const iconKind = getWeatherKind(weatherDescription);
+	const weatherEntry = clima.weather[0];
+	const weatherDescription = weatherEntry?.description ?? '---';
+	const iconKind = getWeatherKind(weatherEntry);
 	const iconSrc = WEATHER_ICON_MAP[iconKind];
 	const dayLabel = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' }).format(new Date());
 
