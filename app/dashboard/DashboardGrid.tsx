@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { EfficiencyCard } from './EfficiencyCard';
+import { PanelStatusCard } from './PanelStatusCard';
 import { TelemetryChartCard } from './TelemetryChartCard';
 import { WeatherGridCard } from './WeatherCard';
 
@@ -11,7 +12,7 @@ export function DashboardGrid() {
 			<WeatherGridCard />
 			<Card xSize={2} ySize={2} />
 			<EfficiencyCard />
-			<Card xSize={1} ySize={1} />
+			<PanelStatusCard />
 			<Card xSize={1} ySize={1} />
 			<Card xSize={1} ySize={1} />
 			<Card xSize={1} ySize={1} />
