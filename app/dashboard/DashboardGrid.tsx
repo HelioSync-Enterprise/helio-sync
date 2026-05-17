@@ -12,12 +12,12 @@ export function DashboardGrid() {
 		<section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:auto-rows-[140px]">
 			<TelemetryChartCard />
 			<WeatherGridCard />
+			<PanelStatusCard />
+			<Card xSize={1} ySize={1} />
 			<Card xSize={2} ySize={2} />
 			<EfficiencyCard />
-			<PanelStatusCard />
 			<MonthlyEnergyCard />
 			<Co2AvoidedCard />
-			<Card xSize={1} ySize={1} />
 		</section>
 	);
 }
