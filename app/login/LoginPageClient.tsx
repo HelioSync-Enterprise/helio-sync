@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { LoginCard } from './LoginCard';
 import { LoginForm } from './LoginForm';
@@ -9,6 +10,7 @@ import { LotusPanel } from './LotusPanel';
 const MAX_PASSWORD_LENGTH = 12;
 
 export default function LoginPageClient() {
+	const router = useRouter();
 	const [mode, setMode] = useState<'signin' | 'signup'>('signin');
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -55,6 +57,7 @@ export default function LoginPageClient() {
 				message: mode === 'signup' ? 'Conta criada com sucesso.' : 'Login realizado.',
 			});
 			setPassword('');
+			router.replace('/dashboard');
 		} catch (error) {
 			const message = error instanceof Error ? error.message : 'Erro inesperado.';
 			setFeedback({ type: 'error', message });
