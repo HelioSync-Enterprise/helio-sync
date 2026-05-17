@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 
 import { EfficiencyCard } from './EfficiencyCard';
+import { Co2AvoidedCard } from './Co2AvoidedCard';
+import { MonthlyEnergyCard } from './MonthlyEnergyCard';
 import { PanelStatusCard } from './PanelStatusCard';
 import { TelemetryChartCard } from './TelemetryChartCard';
 import { WeatherGridCard } from './WeatherCard';
@@ -13,8 +15,8 @@ export function DashboardGrid() {
 			<Card xSize={2} ySize={2} />
 			<EfficiencyCard />
 			<PanelStatusCard />
-			<Card xSize={1} ySize={1} />
-			<Card xSize={1} ySize={1} />
+			<MonthlyEnergyCard />
+			<Co2AvoidedCard />
 			<Card xSize={1} ySize={1} />
 		</section>
 	);
