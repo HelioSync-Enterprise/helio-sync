@@ -25,32 +25,54 @@ function buildTelemetrySeries(entries: typeof mockTelemetry): TelemetryPoint[] {
 		grouped.set(timestamp, current);
 	}
 
-	return Array.from(grouped.entries())
+	const series = Array.from(grouped.entries())
 		.sort((a, b) => a[0] - b[0])
 		.map(([timestamp, value]) => ({
 			timestamp,
 			voltageV: value.sum / value.count,
 		}));
+
+	return smoothSeries(series, 3);
+}
+
+function smoothSeries(series: TelemetryPoint[], windowSize: number) {
+	if (series.length === 0 || windowSize <= 1) {
+		return series;
+	}
+
+	const halfWindow = Math.floor(windowSize / 2);
+
+	return series.map((point, index) => {
+		const start = Math.max(index - halfWindow, 0);
+		const end = Math.min(index + halfWindow, series.length - 1);
+		const slice = series.slice(start, end + 1);
+		const average = slice.reduce((sum, entry) => sum + entry.voltageV, 0) / slice.length;
+		return { ...point, voltageV: average };
+	});
 }
 
 function formatHourLabel(timestamp: number) {
-	return new Date(timestamp).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+	return new Date(timestamp).toLocaleTimeString('pt-BR', {
+		hour: '2-digit',
+		minute: '2-digit',
+		timeZone: 'UTC',
+	});
 }
 
 function buildChartPaths(series: TelemetryPoint[]) {
 	if (series.length === 0) {
-		return { linePath: '', areaPath: '', minValue: 0, maxValue: 0 };
+		return { linePath: '', areaPath: '', minValue: 0, maxValue: 24 };
 	}
 
-	const values = series.map(point => point.voltageV);
-	const minValue = Math.min(...values);
-	const maxValue = Math.max(...values);
-	const range = Math.max(maxValue - minValue, 1);
+	const minValue = 0;
+	const maxValue = 24;
+	const range = maxValue - minValue;
 
 	const points = series.map((point, index) => {
 		const ratio = series.length === 1 ? 0 : index / (series.length - 1);
 		const x = chartPaddingLeft + ratio * (chartWidth - chartPaddingLeft);
-		const y = chartPaddingY + (1 - (point.voltageV - minValue) / range) * (chartHeight - chartPaddingY * 2);
+		const clampedValue = Math.min(Math.max(point.voltageV, minValue), maxValue);
+		const y = chartPaddingY + (1 - (clampedValue - minValue) / range) * (chartHeight - chartPaddingY * 2);
 		return { x, y };
 	});
 
@@ -101,7 +123,11 @@ function filterTelemetry(entries: typeof mockTelemetry, range: RangeMode) {
 
 function formatLabel(timestamp: number, range: RangeMode) {
 	if (range === 'week') {
-		return new Date(timestamp).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+		return new Date(timestamp).toLocaleDateString('pt-BR', {
+			day: '2-digit',
+			month: '2-digit',
+			timeZone: 'UTC',
+		});
 	}
 	return formatHourLabel(timestamp);
 }
@@ -112,12 +138,19 @@ export function TelemetryChartCard() {
 	const series = useMemo(() => buildTelemetrySeries(telemetry), [telemetry]);
 	const { linePath, areaPath, minValue, maxValue } = buildChartPaths(series);
 	const latestVoltage = series.at(-1)?.voltageV ?? 0;
-	const peakVoltage = maxValue;
+	const peakPoint = series.reduce<TelemetryPoint | null>((currentPeak, point) => {
+		if (!currentPeak || point.voltageV > currentPeak.voltageV) {
+			return point;
+		}
+		return currentPeak;
+	}, null);
+	const peakVoltage = peakPoint?.voltageV ?? 0;
 	const averageVoltage = series.length ? series.reduce((acc, point) => acc + point.voltageV, 0) / series.length : 0;
 	const chartRange = Math.max(maxValue - minValue, 1);
 	const startLabel = series.length ? formatLabel(series[0].timestamp, range) : '--:--';
 	const endLabel = series.length ? formatLabel(series[series.length - 1].timestamp, range) : '--:--';
 	const midLabel = series.length ? formatLabel(series[Math.floor(series.length / 2)].timestamp, range) : '--:--';
+	const peakLabel = peakPoint ? formatLabel(peakPoint.timestamp, range) : '--:--';
 	const rangeLabel = range === 'day' ? 'hoje' : 'na  semana';
 
 	return (
@@ -238,7 +271,7 @@ export function TelemetryChartCard() {
 				<div className="flex flex-col gap-1">
 					<span className="text-xs uppercase tracking-[0.22em] text-muted">Pico</span>
 					<span className="text-lg font-semibold text-primary">{peakVoltage.toFixed(1)} V</span>
-					<span className="text-xs">as {endLabel}</span>
+					<span className="text-xs">as {peakLabel}</span>
 				</div>
 				<div className="flex flex-col gap-1">
 					<span className="text-xs uppercase tracking-[0.22em] text-muted">Média</span>
