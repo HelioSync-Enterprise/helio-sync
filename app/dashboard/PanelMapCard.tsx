@@ -9,6 +9,7 @@ import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 
 const MapContainer = dynamic(() => import('react-leaflet').then(module => module.MapContainer), { ssr: false });
+const Pane = dynamic(() => import('react-leaflet').then(module => module.Pane), { ssr: false });
 const TileLayer = dynamic(() => import('react-leaflet').then(module => module.TileLayer), { ssr: false });
 const CircleMarker = dynamic(() => import('react-leaflet').then(module => module.CircleMarker), { ssr: false });
 const Tooltip = dynamic(() => import('react-leaflet').then(module => module.Tooltip), { ssr: false });
@@ -16,7 +17,7 @@ const Tooltip = dynamic(() => import('react-leaflet').then(module => module.Tool
 const STATUS_COLORS: Record<(typeof mockPanels)[number]['status'], string> = {
 	online: '#90ee90',
 	offline: '#f4a1c8',
-	maintenance: '#f4a460',
+	maintenance: '#ffe655',
 };
 
 const CARTO_TILE_URL = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
@@ -80,28 +81,44 @@ export function PanelMapCard() {
 						attributionControl={false}
 					>
 						<TileLayer url={CARTO_TILE_URL} attribution="© Carto © OpenStreetMap" />
-						{mockPanels.map(panel => (
-							<CircleMarker
-								key={panel.id}
-								center={[panel.latitude, panel.longitude]}
-								radius={10}
-								pathOptions={{
-									color: STATUS_COLORS[panel.status],
-									fillColor: STATUS_COLORS[panel.status],
-									fillOpacity: 0.85,
-									weight: 2,
-								}}
-							>
-								<Tooltip direction="top" offset={[0, -6]} opacity={1}>
-									<div className="text-xs">
-										<strong>{panel.label}</strong>
-										<div>Status: {panel.status}</div>
-									</div>
-								</Tooltip>
-							</CircleMarker>
-						))}
+						<Pane name="markers" style={{ zIndex: 650 }}>
+							{mockPanels.map(panel => (
+								<CircleMarker
+									key={panel.id}
+									center={[panel.latitude, panel.longitude]}
+									radius={5}
+									pathOptions={{
+										color: STATUS_COLORS[panel.status],
+										fillColor: STATUS_COLORS[panel.status],
+										fillOpacity: 0.85,
+										weight: 2,
+									}}
+								>
+									<Tooltip direction="top" offset={[0, -6]} opacity={1}>
+										<div className="text-xs">
+											<strong>{panel.label}</strong>
+											<div>Status: {panel.status}</div>
+										</div>
+									</Tooltip>
+								</CircleMarker>
+							))}
+						</Pane>
 					</MapContainer>
 				</div>
+					<div className="pointer-events-none absolute z-999 bottom-5 left-5 flex items-center gap-3 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/70">
+						<span className="inline-flex items-center gap-2">
+							<span className="h-2 w-2 rounded-full bg-helio-green-light" aria-hidden="true" />
+							Online
+						</span>
+						<span className="inline-flex items-center gap-2">
+							<span className="h-2 w-2 rounded-full bg-helio-gold" aria-hidden="true" />
+							Manut.
+						</span>
+						<span className="inline-flex items-center gap-2">
+							<span className="h-2 w-2 rounded-full bg-helio-rose" aria-hidden="true" />
+							Offline
+						</span>
+					</div>
 			</div>
 		</div>
 	);

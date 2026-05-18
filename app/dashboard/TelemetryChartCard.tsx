@@ -157,7 +157,7 @@ export function TelemetryChartCard() {
 		<div className="flex h-full flex-col gap-6 rounded-2xl border border-foreground/10 bg-[linear-gradient(180deg,rgba(6,14,6,0.9),rgba(6,14,6,0.6))] p-5 lg:col-span-3 lg:row-span-4">
 			<div className="flex flex-wrap items-start justify-between gap-4">
 				<div className="flex flex-col gap-2">
-					<span className="text-xs uppercase tracking-[0.24em] text-secondary">Analytics de geração</span>
+					<span className="text-xs uppercase tracking-[0.24em] text-secondary">Analise de geração</span>
 					<h2 className="text-lg font-semibold text-primary">Frota completa - volts gerados {rangeLabel}</h2>
 					<span className="text-sm text-secondary">Atual: {latestVoltage.toFixed(1)} V</span>
 				</div>
