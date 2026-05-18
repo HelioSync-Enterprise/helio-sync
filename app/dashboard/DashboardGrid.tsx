@@ -4,7 +4,9 @@ import { EfficiencyCard } from './EfficiencyCard';
 import { Co2AvoidedCard } from './Co2AvoidedCard';
 import { MonthlyEnergyCard } from './MonthlyEnergyCard';
 import { PanelStatusCard } from './PanelStatusCard';
+import { PanelMapCard } from './PanelMapCard';
 import { TelemetryChartCard } from './TelemetryChartCard';
+import { UpdateForecastCard } from './UpdateForecastCard';
 import { WeatherGridCard } from './WeatherCard';
 
 export function DashboardGrid() {
@@ -13,8 +15,8 @@ export function DashboardGrid() {
 			<TelemetryChartCard />
 			<WeatherGridCard />
 			<PanelStatusCard />
-			<Card xSize={1} ySize={1} />
-			<Card xSize={2} ySize={2} />
+			<UpdateForecastCard />
+			<PanelMapCard />
 			<EfficiencyCard />
 			<MonthlyEnergyCard />
 			<Co2AvoidedCard />

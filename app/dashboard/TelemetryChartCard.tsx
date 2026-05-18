@@ -248,7 +248,7 @@ export function TelemetryChartCard() {
 				<div className="flex flex-col gap-1">
 					<span className="text-xs uppercase tracking-[0.22em] text-muted">Geração</span>
 					<span className="text-lg font-semibold text-helio-green-light">8.4 kWh</span>
-					<span className="text-xs">estimado</span>
+					<span className="text-xs">energia estimada acumulada no dia</span>
 				</div>
 			</div>
 		</div>

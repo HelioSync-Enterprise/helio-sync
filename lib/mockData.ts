@@ -57,8 +57,8 @@ export const mockPanels: MockPanel[] = [
 	{
 		id: 'pnl_001',
 		label: 'Helio-Alpha',
-		latitude: -23.55,
-		longitude: -46.633,
+		latitude: -23.499528,
+		longitude: -47.400944,
 		status: 'online',
 		currentAngleAzimuth: 112.5,
 		currentAngleElevation: 38.2,
@@ -68,8 +68,8 @@ export const mockPanels: MockPanel[] = [
 	{
 		id: 'pnl_002',
 		label: 'Helio-Beta',
-		latitude: -23.6,
-		longitude: -46.7,
+		latitude: -23.499389,
+		longitude: -47.40075,
 		status: 'maintenance',
 		currentAngleAzimuth: 96.1,
 		currentAngleElevation: 12.4,
@@ -79,8 +79,8 @@ export const mockPanels: MockPanel[] = [
 	{
 		id: 'pnl_003',
 		label: 'Helio-Gamma',
-		latitude: -23.45,
-		longitude: -46.5,
+		latitude: -23.49925,
+		longitude: -47.400556,
 		status: 'offline',
 		currentAngleAzimuth: 180,
 		currentAngleElevation: 0,
