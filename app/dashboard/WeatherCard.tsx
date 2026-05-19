@@ -122,11 +122,11 @@ export function WeatherGridCard() {
 				</div>
 				<div className="flex h-full flex-col items-end justify-between">
 					<span className="text-[10px] uppercase tracking-[0.4em] text-helio-green-light/70">Agora</span>
-					<div className="flex h-28 w-28 items-center justify-center xl:h-40 xl:w-40">
+					<div className="flex h-28 w-28 items-center justify-center 2xl:h-40 2xl:w-40">
 						<Image
 							src={iconSrc}
 							alt={weatherDescription}
-							className="h-28 w-28 xl:h-40 xl:w-40"
+							className="h-28 w-28 2xl:h-40 2xl:w-40"
 							loading="lazy"
 							width={160}
 							height={160}

@@ -16,7 +16,7 @@ export function PanelStatusCard() {
 	return (
 		<div className="flex h-full flex-col justify-between rounded-2xl border border-foreground/10 bg-[linear-gradient(180deg,rgba(6,14,6,0.92),rgba(6,14,6,0.6))] lg:col-span-1 lg:row-span-1">
 			<div className="flex items-start justify-between">
-				<div className="flex flex-col w-full gap-2 p-4 pb-0">
+				<div className="flex flex-col w-full 2xl:gap-2 gap-1 p-4 pb-0">
 					<div className="flex justify-between items-center">
 						<span className="text-[10px] uppercase tracking-[0.28em] text-muted">Status das placas</span>
 						<span className="text-sm font-semibold text-primary">{onlineRate.toFixed(0)}%</span>
@@ -40,15 +40,15 @@ export function PanelStatusCard() {
 				</div>
 			</div>
 			<div className="flex text-xs text-muted 2xl:p-4 p-2 pt-0 gap-2">
-				<div className="flex flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-helio-green/30 bg-white/4 px-2 py-1">
+				<div className="flex flex-1 flex-col items-center justify-center 2xl:gap-1 rounded-xl border border-helio-green/30 bg-white/4 px-2 py-1">
 					<span className="text-[10px] uppercase tracking-[0.22em] text-helio-green-light">Online</span>
 					<span className="text-base font-semibold text-helio-green-light">{online}</span>
 				</div>
-				<div className="flex flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-helio-gold/30 bg-white/4 px-2 py-1">
+				<div className="flex flex-1 flex-col items-center justify-center 2xl:gap-1 rounded-xl border border-helio-gold/30 bg-white/4 px-2 py-1">
 					<span className="text-[10px] uppercase tracking-[0.22em] text-helio-gold">Manut.</span>
 					<span className="text-base font-semibold text-helio-gold">{maintenance}</span>
 				</div>
-				<div className="flex flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-helio-rose/30 bg-white/4 px-2 py-1">
+				<div className="flex flex-1 flex-col items-center justify-center 2xl:gap-1 rounded-xl border border-helio-rose/30 bg-white/4 px-2 py-1">
 					<span className="text-[10px] uppercase tracking-[0.22em] text-helio-rose">Offline</span>
 					<span className="text-base font-semibold text-helio-rose">{offline}</span>
 				</div>
