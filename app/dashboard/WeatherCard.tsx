@@ -97,19 +97,19 @@ export function WeatherGridCard() {
 	const dayLabel = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' }).format(new Date());
 
 	return (
-		<div className="relative col-span-2 row-span-2 flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-foreground/10 bg-[radial-gradient(circle_at_top_left,rgba(50,205,50,0.14),transparent_55%),linear-gradient(180deg,rgba(6,14,6,0.96),rgba(6,14,6,0.78))] p-6 shadow-[0_30px_50px_-40px_rgba(6,14,6,0.9)]">
+		<div className="relative col-span-2 row-span-2 flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-foreground/10 bg-[radial-gradient(circle_at_top_left,rgba(50,205,50,0.14),transparent_55%),linear-gradient(180deg,rgba(6,14,6,0.96),rgba(6,14,6,0.78))] p-4 shadow-[0_30px_50px_-40px_rgba(6,14,6,0.9)] 2xl:p-6">
 			<div className="pointer-events-none absolute -left-28 -top-24 h-64 w-64 rounded-full bg-helio-green/12 blur-3xl" />
 			<div className="pointer-events-none absolute -right-20 top-6 h-44 w-44 rounded-full bg-helio-gold/6 blur-3xl" />
-			<div className="relative grid grid-cols-[minmax(0,1fr)_120px] items-start gap-6">
+			<div className="relative grid grid-cols-[minmax(0,1fr)_100px] items-start gap-4 xl:grid-cols-[minmax(0,1fr)_120px] xl:gap-6">
 				<div className="flex flex-col gap-5">
 					<div className="flex items-end gap-2">
 						<span
 							suppressHydrationWarning
-							className="text-6xl font-light leading-none tracking-tight text-white"
+							className="text-5xl font-light leading-none tracking-tight text-white xl:text-6xl"
 						>
 							{Math.round(clima.main.temp)}
 						</span>
-						<span className="pb-1 text-xl font-light text-muted">°C</span>
+						<span className="pb-1 text-lg font-light text-muted xl:text-xl">°C</span>
 					</div>
 					<div className="flex flex-col gap-2">
 						<h2 className="text-lg font-semibold text-white/90 uppercase tracking-tight">{clima.name}</h2>
@@ -122,8 +122,15 @@ export function WeatherGridCard() {
 				</div>
 				<div className="flex h-full flex-col items-end justify-between">
 					<span className="text-[10px] uppercase tracking-[0.4em] text-helio-green-light/70">Agora</span>
-					<div className="flex h-40 w-40 items-center justify-center">
-						<Image src={iconSrc} alt={weatherDescription} className="h-40 w-40" loading="lazy" width={160} height={160} />
+					<div className="flex h-28 w-28 items-center justify-center xl:h-40 xl:w-40">
+						<Image
+							src={iconSrc}
+							alt={weatherDescription}
+							className="h-28 w-28 xl:h-40 xl:w-40"
+							loading="lazy"
+							width={160}
+							height={160}
+						/>
 					</div>
 				</div>
 			</div>

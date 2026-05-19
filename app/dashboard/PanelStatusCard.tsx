@@ -39,7 +39,7 @@ export function PanelStatusCard() {
 					</div>
 				</div>
 			</div>
-			<div className="flex text-xs text-muted p-4 pt-0 gap-2">
+			<div className="flex text-xs text-muted 2xl:p-4 p-2 pt-0 gap-2">
 				<div className="flex flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-helio-green/30 bg-white/4 px-2 py-1">
 					<span className="text-[10px] uppercase tracking-[0.22em] text-helio-green-light">Online</span>
 					<span className="text-base font-semibold text-helio-green-light">{online}</span>

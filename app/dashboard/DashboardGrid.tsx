@@ -11,7 +11,7 @@ import { WeatherGridCard } from './WeatherCard';
 
 export function DashboardGrid() {
 	return (
-		<section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:auto-rows-[140px]">
+		<section className="grid gap-2 grid-cols-5 auto-rows-[118px] 2xl:gap-4 2xl:auto-rows-[140px]">
 			<TelemetryChartCard />
 			<WeatherGridCard />
 			<PanelStatusCard />

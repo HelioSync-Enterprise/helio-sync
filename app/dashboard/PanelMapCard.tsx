@@ -66,12 +66,12 @@ export function PanelMapCard() {
 	}, []);
 
 	return (
-		<div className="relative col-span-2 row-span-2 flex h-full flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-[linear-gradient(180deg,rgba(6,14,6,0.92),rgba(6,14,6,0.6))]">
-			<div className="flex items-center justify-between px-4 pt-4">
+		<div className="relative col-span-2 row-span-1 flex h-full flex-col overflow-hidden rounded-2xl border border-foreground/10 bg-[linear-gradient(180deg,rgba(6,14,6,0.92),rgba(6,14,6,0.6))] xl:row-span-2">
+			<div className="flex items-center justify-between px-3 pt-3 xl:px-4 xl:pt-4">
 				<span className="text-[10px] uppercase tracking-[0.28em] text-muted">Posição das placas</span>
 				<span className="text-xs text-muted">{mockPanels.length} Placas posicionadas</span>
 			</div>
-			<div className="relative h-full w-full px-4 pb-4 pt-3">
+			<div className="relative h-full w-full px-3 pb-3 pt-2 xl:px-4 xl:pb-4 xl:pt-3">
 				<div className="relative h-full w-full overflow-hidden rounded-2xl border border-foreground/10">
 					<MapContainer
 						center={center}
