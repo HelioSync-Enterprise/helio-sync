@@ -1,24 +1,13 @@
 import { mockPanels } from '@/lib/mockData';
+import { formatTimeLabel, getLatestSyncTimestamp } from '@/lib/panelMetrics';
 
 const UPDATE_INTERVAL_MIN = 30;
 
-function getLatestSyncTimestamp() {
-	if (mockPanels.length === 0) {
-		return Date.now();
-	}
-
-	return Math.max(...mockPanels.map(panel => Date.parse(panel.lastSyncAt)));
-}
-
 export function UpdateForecastCard() {
-	const latestSync = getLatestSyncTimestamp();
+	const latestSync = getLatestSyncTimestamp(mockPanels);
 	const nextSync = latestSync + UPDATE_INTERVAL_MIN * 60 * 1000;
-	const nextLabel = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' }).format(
-		new Date(nextSync),
-	);
-	const lastLabel = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' }).format(
-		new Date(latestSync),
-	);
+	const nextLabel = formatTimeLabel(nextSync, 'local');
+	const lastLabel = formatTimeLabel(latestSync, 'local');
 
 	return (
 		<div className="flex h-full flex-col justify-between rounded-2xl border border-foreground/10 bg-[linear-gradient(180deg,rgba(6,14,6,0.92),rgba(6,14,6,0.6))] p-4 lg:col-span-1 lg:row-span-1">
